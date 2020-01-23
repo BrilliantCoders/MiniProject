@@ -13,6 +13,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
         <property name = "suffix" value = ".jsp" />
     </bean>
 
+    <bean id="mailhelper" class="com.helper.MailHelper"/>
 
 
 </beans>
