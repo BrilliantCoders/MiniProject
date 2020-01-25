@@ -21,7 +21,7 @@ public class MailHelper {
         Mailer mailer = MailerBuilder
                 .withSMTPServer("smtp.gmail.com", 587, "kathuriyarajat@gmail.com", "Rajat@5692")
                 .withTransportStrategy(TransportStrategy.SMTP_TLS)
-                //.withProxy("172.31.100.29", 3128, "edcguest", "edcguest")
+                .withProxy("172.31.100.29", 3128, "edcguest", "edcguest")
                 .withSessionTimeout(10 * 1000)
                 .withProperty("mail.smtp.auth", "true")
                 .withProperty("mail.smtp.starttls.enable","true")
