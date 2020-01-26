@@ -1,0 +1,91 @@
+body{
+    background: #ececec;
+    font-size: 16px;
+}
+
+.header{
+    background-color: #fbfbfb;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    width: 100%;
+    padding-top: 10px;
+    display: table;
+    height: 80px;
+    margin: 0px;
+}
+.column1 {
+    float: left;
+    text-align: right;
+    width: 10%;
+    vertical-align: center;
+    horiz-align: right;
+    padding-right: 10px;
+    height: 100%;
+}
+
+.column2 {
+    float: left;
+    vertical-align: center;
+    horiz-align: left;
+    width: 60%;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    height: 100%;
+}
+
+.column3 {
+    float: right;
+    width: 20%;
+    vertical-align: center;
+    text-align: left;
+    padding: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 100%;
+}
+
+.name{
+    font-size: 18px;
+    padding-bottom: 5px;
+    font-family: 'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+    font-style: normal;
+    font-weight: bold;
+    color: #3d3395;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+
+.container{
+    height: 100%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5px;
+    background: white;
+    padding: 0px;
+
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+
+}
+
+.containerHead{
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 23px;
+    background: white;
+
+
+}

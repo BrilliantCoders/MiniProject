@@ -13,21 +13,42 @@
 <html>
 <head>
     <title>DashBoard</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/DashBoard.css"/>" />
-    <style>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/DashBoard.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Header.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    </style>
+
+    <script>
+        $(function(){
+            $(".header").load("/admin/Header");
+            $("#footer").load("<c:url value="/resources/html/Footer.html"/>");
+        });
+    </script>
 </head>
-<body>
+<body style="margin: 0px;padding: 0px;">
 
-<div style="display:inline;">
+<div class="header" >
+
+</div>
+
+<div class="container">
+
+    <div class="containerHead">
+        DashBoard
+    </div>
+
+
+<div style="display:inline;margin-left:15%;margin-right: 15% ">
+
+
     <ul class="list">
         <c:forEach var="feature" items="${features}">
             <li class="listItem">
                 <a href="${contextPath}/${feature.link}" class="link">
                     <div class="box">
                         <img height="60px" width="60px" src="<c:url value="${feature.image}" />"><br>
-                        <strong>${feature.name}</strong>
+                        <span style="height: 50px;margin-top: 8px">${feature.name}</span>
                     </div>
                 </a>
             </li>
@@ -36,9 +57,12 @@
 
     </ul>
 </div>
+</div>
+
+<div id="footer">
 
 
-
+</div>
 
 </body>
 </html>

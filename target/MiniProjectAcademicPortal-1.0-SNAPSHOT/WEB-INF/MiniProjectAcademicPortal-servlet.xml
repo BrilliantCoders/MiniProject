@@ -28,8 +28,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <bean id="attendanceDao" class="com.database.AttendanceDAO"/>
 
-    <mvc:resources mapping = "/css/**" location = "/WEB-INF/css/" />
-    <mvc:resources mapping = "/image/**" location = "/WEB-INF/image/" />
+    <mvc:resources mapping = "/resources/**" location = "/resources/" />
+    
     <mvc:annotation-driven/>
     <mvc:default-servlet-handler/>
 

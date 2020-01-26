@@ -12,7 +12,31 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/ShowStudentList.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/ShowStudentList.css"/>" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var absentList=[];
+        $('document').ready(function(){
+            $('input[name*="checkbox"]').change(function()
+            {
+                var id=$(this).attr("id");
+                if ($(this).is(':checked')) {
+                    absentList.push(id);
+                }
+                else{
+                    var index=absentList.indexOf(id);
+                    absentList.splice(index,1);
+                }
+                $('#tr'+id).toggleClass("absent");
+            });
+
+            $("form").submit(function() {
+                alert("submit");
+                $("#absent").val(absentList.join(","));
+            });
+
+        });
+    </script>
 
 </head>
 <body>
@@ -26,12 +50,12 @@
                  <th>P/A</th>
              </tr>
              <c:forEach var="student" items="${Students}">
-                 <tr>
+                 <tr id="tr${student.regNo}">
                      <td>${student.rollNo}</td>
                      <td>${student.name}</td>
                      <td>${student.regNo}</td>
                      <td>
-                         <input type="checkbox" name="${student.regNo}">
+                         <input type="checkbox" index="${student.rollNo}" id="${student.regNo}"  name="checkbox${student.regNo}">
                      </td>
                  </tr>
 
@@ -39,6 +63,15 @@
          </table>
 
      </div>
+
+     <form action="${contextPath}/submitAttendance" method="post">
+         <input type="hidden" id="absent" name="absent" value="">
+         <input type="submit" value="Submit Attendance">
+     </form>
+
+     <form action="" method="post">
+         <input type="submit" value="Upload Excel File">
+     </form>
 
 </body>
 </html>

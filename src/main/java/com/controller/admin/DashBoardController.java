@@ -20,11 +20,18 @@ public class DashBoardController {
 
 
         ArrayList<Feature> list=new ArrayList<Feature>();
-        list.add(new Feature("Mark","attendanceList","/image/attendanceIcon.png"));
-        list.add(new Feature("Mark","attendance","https://cdn2.iconfinder.com/data/icons/flat-colored-2/130/194-512.png"));
-        list.add(new Feature("Mark","/attendance","https://cdn2.iconfinder.com/data/icons/flat-colored-2/130/194-512.png"));
-        list.add(new Feature("Mark","/attendance","https://cdn2.iconfinder.com/data/icons/flat-colored-2/130/194-512.png"));
-        list.add(new Feature("Mark","/attendance","WEB-INF/image/attendanceIcon.png"));
+        String path="/resources/image";
+        list.add(new Feature("Mark Attendance","attendanceList","/resources/image/attendanceIcon.png"));
+        list.add(new Feature("Notice Uploading","attendance","/resources/image/notice.png"));
+        list.add(new Feature("Change Password","/attendance","/resources/image/changepassword.png"));
+        list.add(new Feature("Performance Record","/attendance","/resources/image/reports.png"));
+        list.add(new Feature("Logout Websiteee","/attendance","/resources/image/logout.png"));
+        list.add(new Feature("Teaching Material","attendanceList","/resources/image/attendanceIcon.png"));
+        list.add(new Feature("Laboratory Record","attendance","/resources/image/notice.png"));
+        list.add(new Feature("Upload Assignment","/attendance","/resources/image/changepassword.png"));
+        list.add(new Feature("See Assignments","/attendance","/resources/image/reports.png"));
+        list.add(new Feature("Add/Remove Course","/attendance","/resources/image/logout.png"));
+
         m.addAttribute("features",list);
 
 
