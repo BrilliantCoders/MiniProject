@@ -13,21 +13,42 @@
 <html>
 <head>
     <title>DashBoard</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/css/DashBoard.css"/>" />
-    <style>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/DashBoard.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Header.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    </style>
+
+
 </head>
-<body>
+<body class="body">
 
-<div style="display:inline;">
+
+
+<%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
+
+
+<div class="container">
+
+    <div class="containerHead">
+        DashBoard
+    </div>
+
+
+<div style="display:inline;margin-left:15%;margin-right: 15% ">
+
+
     <ul class="list">
         <c:forEach var="feature" items="${features}">
             <li class="listItem">
                 <a href="${contextPath}/${feature.link}" class="link">
                     <div class="box">
-                        <img height="60px" width="60px" src="<c:url value="${feature.image}" />"><br>
-                        <strong>${feature.name}</strong>
+                        <img height="66px" width="66px" src="<c:url value="${feature.image}" />"><br>
+                        <div style="height: 50px;padding: 5px;size: 21px">
+                            <label >${feature.name}</label>
+                        </div>
+
                     </div>
                 </a>
             </li>
@@ -36,6 +57,11 @@
 
     </ul>
 </div>
+</div>
+
+
+
+<%@ include file="/resources/html/Footer.html" %>
 
 
 
