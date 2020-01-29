@@ -21,16 +21,17 @@ public class DashBoardController {
 
         ArrayList<Feature> list=new ArrayList<Feature>();
         String path="/resources/image";
-        list.add(new Feature("Mark Attendance","attendanceList","/resources/image/attendanceIcon.png"));
-        list.add(new Feature("Notice Uploading","attendance","/resources/image/notice.png"));
-        list.add(new Feature("Change Password","/attendance","/resources/image/changepassword.png"));
-        list.add(new Feature("Performance Record","/attendance","/resources/image/reports.png"));
-        list.add(new Feature("Logout Websiteee","/attendance","/resources/image/logout.png"));
-        list.add(new Feature("Teaching Material","attendanceList","/resources/image/attendanceIcon.png"));
-        list.add(new Feature("Laboratory Record","attendance","/resources/image/notice.png"));
-        list.add(new Feature("Upload Assignment","/attendance","/resources/image/changepassword.png"));
-        list.add(new Feature("See Assignments","/attendance","/resources/image/reports.png"));
-        list.add(new Feature("Add/Remove Course","addRemoveCourse","/resources/image/logout.png"));
+        list.add(new Feature("Mark\nAttendance","attendanceList","/resources/image/atten.png"));
+        list.add(new Feature("Performance\nRecord","/attendance","/resources/image/per.png"));
+        list.add(new Feature("Teaching\nMaterial","attendanceList","/resources/image/teaching_material.png"));
+        list.add(new Feature("Laboratory\nRecord","attendance","/resources/image/lab.png"));
+        list.add(new Feature("Upload New Notice","attendance","/resources/image/notify2.png"));
+        list.add(new Feature("Change\nPassword","/attendance","/resources/image/chgpass.png"));
+        list.add(new Feature("Upload\nAssignment","/attendance","/resources/image/upload.png"));
+        list.add(new Feature("See\nAssignments","/attendance","/resources/image/assgn2.png"));
+        list.add(new Feature("Add/Remove\nCourse","addRemoveCourse","/resources/image/assgn.png"));
+        list.add(new Feature("Logout\nWebsite","/attendance","/resources/image/logout.png"));
+
 
         m.addAttribute("features",list);
 

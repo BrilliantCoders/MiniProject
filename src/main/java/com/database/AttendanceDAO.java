@@ -1,6 +1,7 @@
 package com.database;
 
 import com.model.Student;
+import com.mysql.jdbc.DatabaseMetaData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -39,25 +40,82 @@ public class AttendanceDAO {
 
     }
 
+    public void createDateColumn(String date){
+        // check if column exist or not
+        String query="select count("+date+") as dateCount from ds_mca_second_attendance";
+        Integer exist=0;
+
+        try {
+            exist=template.queryForObject(query, new RowMapper<Integer>() {
+                public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+                    System.out.println("count== "+resultSet.getInt("dateCount"));
+                    return 1;
+                }
+            });
+            System.out.println(exist);
+
+        }
+        catch (Exception e){
+
+            e.printStackTrace();
+        }
+
+        if(exist==0){
+            query="Alter table ds_mca_second_attendance add column "+date+" VARCHAR(45) NOT NULL DEFAULT 'P'";
+            template.update(query);
+        }
+
+    }
+
+
+
     public void markAttendance(String date,String absentees){
 
-        // check if column exist or not
-       /* String query="select "+date+" from ALL_TAB_COLUMNS where TABLE_NAME = 'ds_mca_second_student'";
-        template.query(query);*/
-        String query;
-        query="Alter table ds_mca_second_attendance add column "+date+" VARCHAR(45) NOT NULL DEFAULT 'P'";
-        int x=0;//template.update(query);
+
+        createDateColumn(date);
+
         String ab="";
         String[] absenteesList=absentees.split(",");
         for (String s:absenteesList) {
             ab+="'"+s+"',";
         }
         ab=ab.substring(0,ab.length()-1);
-        query="update ds_mca_second_attendance set "+date+"='P';";
+
+        String query="update ds_mca_second_attendance set "+date+"='P';";
         template.update(query);
+
+
         query="update ds_mca_second_attendance set "+date+"='A' where RegNo in ("+ab+");";
         int y=template.update(query);
-        System.out.println(x+"   "+y);
+    }
+
+
+    public void markAttendanceViaList(ArrayList<String> headers,ArrayList<Student> students){
+
+        for (int i=2;i<headers.size();i++) {
+            headers.set(i,headers.get(i).replaceAll("[ :]","_"));
+            createDateColumn(headers.get(i));
+        }
+
+        int count=0;
+
+        String query;
+        for (Student st:students){
+            query="update ds_mca_second_attendance set ";
+            int i=0;
+            for(String attendance:st.getPresent()){
+                query=query+headers.get(i+2)+"='"+attendance+"' ,";
+                i++;
+            }
+            query=query.substring(0,query.length()-1);
+            query+="where RollNo="+st.getRollNo()+";";
+
+            template.update(query);
+
+            System.out.println("uploaded "+count+" student data");
+        }
+
+
     }
 
 

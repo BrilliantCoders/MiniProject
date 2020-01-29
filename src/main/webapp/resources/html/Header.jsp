@@ -25,8 +25,9 @@
 
 </div>
 <div class="column3">
-    <span style="color: #3d3395;"> Contact No.</span> - 9876543210<br>
-    <span style="color: #3d3395;">Email </span> - test132@xyz.com
+    <b><span style="color: #3d3395;"> Contact No. </span></b> <label style="color: black">- 9876543210</label>
+    <br>
+    <span style="color: #3d3395;"><b>Email </b></span>  <label style="color: black"> - test132@xyz.com </label>
 </div>
 
 

@@ -15,10 +15,14 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/ShowStudentList.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Header.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         var absentList=[];
         $('document').ready(function(){
+
+            $('input:checkbox').prop('checked', false);
+
             $('input[name*="checkbox"]').change(function()
             {
                 var id=$(this).attr("id");
@@ -32,16 +36,18 @@
                 $('#tr'+id).toggleClass("absent");
             });
 
-            $("#form").submit(function() {
+            $("form").submit(function() {
                 alert("submit");
-                $("#absent").val(absentList.join(","));
+                var x=absentList.join(",");
+                $("#absent").val(x);
+                $("#absent1").val(x);
             });
 
         });
     </script>
 
 </head>
-<body>
+<body class="body">
 
 
 
@@ -50,12 +56,18 @@
 
 <div class="container">
 
+
+
     <div class="containerHead">
-        Students List
+        <b>Take Attendance Manually</b>
     </div>
 
+    <form action="${contextPath}/submitAttendance"  method="post">
+        <input type="hidden" id="absent1" name="absent" value="">
+        <input type="submit" class="btn btn-success" value="Submit Attendance">
+    </form>
 
-     <div style="width: 97%;alignment: center;text-align: center;horiz-align: center;margin: 10px">
+    <div style="width: 97%;alignment: center;text-align: center;horiz-align: center;margin: 10px">
          <table>
              <tr>
                  <th>Roll No</th>
@@ -69,7 +81,7 @@
                      <td>${student.name}</td>
                      <td>${student.regNo}</td>
                      <td>
-                         <input type="checkbox" index="${student.rollNo}" id="${student.regNo}"  name="checkbox${student.regNo}">
+                         <input type="checkbox"  index="${student.rollNo}" id="${student.regNo}"  name="checkbox${student.regNo}">
                      </td>
                  </tr>
 
@@ -80,13 +92,9 @@
 
      <form action="${contextPath}/submitAttendance" id="form" method="post">
          <input type="hidden" id="absent" name="absent" value="">
-         <input type="submit" value="Submit Attendance">
+         <input type="submit" class="btn btn-success" value="Submit Attendance">
      </form>
 
-     <form action="${contextPath}/saveFile"  method="post" enctype="multipart/form-data">
-         <input type="file" name="file">
-         <input type="submit" value="Submit">
-     </form>
 
 </div>
 

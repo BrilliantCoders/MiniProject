@@ -28,6 +28,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <bean id="attendanceDao" class="com.database.AttendanceDAO"/>
 
+    <bean id="courseDao" class="com.database.CourseDAO"/>
+
     <bean id="excelHelper" class="com.helper.ExcelFileHelper"/>
 
     <bean id="multipartResolver"

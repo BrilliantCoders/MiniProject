@@ -24,8 +24,11 @@
 <div class="container">
 
     <div class="containerHead">
-        DashBoard
+        Preview Attendance
     </div>
+
+
+
 
 <div style="width: 100%;alignment: center;text-align: center">
     <table>
@@ -55,6 +58,13 @@
 
         </c:forEach>
     </table>
+
+
+    <div>
+        <form action="${contextPath}/submitAttendanceViaFile">
+            <input type="submit" value="Submit Attendance">
+        </form>
+    </div>
 
 </div>
 </div>

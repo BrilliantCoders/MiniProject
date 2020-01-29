@@ -47,6 +47,14 @@
         </table>
 
     </div>
+
+    <div>
+        <form action="${contextPath}/addCourseStudent">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+
 </div>
 
 <%@ include file="/resources/html/Footer.html" %>

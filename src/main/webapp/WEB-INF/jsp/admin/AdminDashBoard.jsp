@@ -16,12 +16,14 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/DashBoard.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Header.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
 
 </head>
-<body >
+<body class="body">
+
 
 
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
@@ -42,8 +44,11 @@
             <li class="listItem">
                 <a href="${contextPath}/${feature.link}" class="link">
                     <div class="box">
-                        <img height="60px" width="60px" src="<c:url value="${feature.image}" />"><br>
-                        <span style="height: 50px;margin-top: 8px">${feature.name}</span>
+                        <img height="66px" width="66px" src="<c:url value="${feature.image}" />"><br>
+                        <div style="height: 50px;padding: 5px;size: 21px">
+                            <label >${feature.name}</label>
+                        </div>
+
                     </div>
                 </a>
             </li>
@@ -57,6 +62,9 @@
 
 
 <%@ include file="/resources/html/Footer.html" %>
+
+
+
 
 </body>
 </html>
