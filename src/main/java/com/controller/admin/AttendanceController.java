@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -19,6 +20,8 @@ public class AttendanceController {
     @RequestMapping(value = "attendanceList")
     public String showStudentList(Model m){
         List<Student> list=dao.getStudentList();
+        Collections.sort(list);
+
         m.addAttribute("Students",list);
         return "admin/ShowStudentList";
     }

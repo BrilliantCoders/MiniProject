@@ -13,6 +13,8 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/ShowStudentList.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Header.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
         var absentList=[];
@@ -30,7 +32,7 @@
                 $('#tr'+id).toggleClass("absent");
             });
 
-            $("form").submit(function() {
+            $("#form").submit(function() {
                 alert("submit");
                 $("#absent").val(absentList.join(","));
             });
@@ -41,7 +43,19 @@
 </head>
 <body>
 
-     <div style="width: 50%;alignment: center;text-align: center">
+
+
+<%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
+
+
+<div class="container">
+
+    <div class="containerHead">
+        Students List
+    </div>
+
+
+     <div style="width: 97%;alignment: center;text-align: center;horiz-align: center;margin: 10px">
          <table>
              <tr>
                  <th>Roll No</th>
@@ -64,14 +78,21 @@
 
      </div>
 
-     <form action="${contextPath}/submitAttendance" method="post">
+     <form action="${contextPath}/submitAttendance" id="form" method="post">
          <input type="hidden" id="absent" name="absent" value="">
          <input type="submit" value="Submit Attendance">
      </form>
 
-     <form action="" method="post">
-         <input type="submit" value="Upload Excel File">
+     <form action="${contextPath}/saveFile"  method="post" enctype="multipart/form-data">
+         <input type="file" name="file">
+         <input type="submit" value="Submit">
      </form>
+
+</div>
+
+<%@ include file="/resources/html/Footer.html" %>
+
+
 
 </body>
 </html>

@@ -30,7 +30,7 @@ public class DashBoardController {
         list.add(new Feature("Laboratory Record","attendance","/resources/image/notice.png"));
         list.add(new Feature("Upload Assignment","/attendance","/resources/image/changepassword.png"));
         list.add(new Feature("See Assignments","/attendance","/resources/image/reports.png"));
-        list.add(new Feature("Add/Remove Course","/attendance","/resources/image/logout.png"));
+        list.add(new Feature("Add/Remove Course","addRemoveCourse","/resources/image/logout.png"));
 
         m.addAttribute("features",list);
 

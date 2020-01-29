@@ -8,17 +8,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<html>
-<head>
-    <title>Title</title>
-</head>
+
 <body>
 
+
+
+<div class="header" >
 <div class="column1">
     <img width="65px" height="75px" src="<c:url value="/resources/image/logo.png"/>">
 </div>
 <div class="column2">
-    <span class="name"> Er. Manoj Wairya</span><br>
+    <span class="name"> Professor Manoj Wairya</span><br>
     <span style="color: black">An Academic portal to assist students for their studies</span><br>
     <span style="color: black">CSED MNNIT Allahabad , Prayagraj</span>
 
@@ -27,7 +27,7 @@
     <span style="color: #3d3395;"> Contact No.</span> - 9876543210<br>
     <span style="color: #3d3395;">Email </span> - test132@xyz.com
 </div>
-
+</div>
 
 </body>
-</html>
+
