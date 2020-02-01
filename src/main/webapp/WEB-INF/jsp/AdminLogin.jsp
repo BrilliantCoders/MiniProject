@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: hp
-  Date: 25-01-2020
-  Time: 22:39
+  Date: 01-02-2020
+  Time: 14:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,18 +10,23 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-    <title>Title</title>
+    <title>Admin Login</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/DashBoard.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Header.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
-    Login Page Hello ${name}
+<%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
 
-    <form action="${contextPath}/submit" method="post">
+<div class="container">
 
-        <input type="text" name="email">
-        <input type="submit" value="Submit Me">
-
-    </form>
-
+    <div class="containerHead">
+        Admin Login
+    </div>
+    <%@ include file="/resources/html/Footer.html" %>
 
 </body>
 </html>
