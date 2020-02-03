@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -23,9 +24,21 @@
 
 <div class="container">
 
-    <div class="containerHead">
+    <div class="containerHead" align="center">
         Admin Login
     </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div>
+        <centre>
+            <form action="/adminDashboard">
+                Name:<input type="text" align="center" name="name"><br/><br/><br/>
+                Password:<input type="password" align="center" name="password"><br/>
+                    <input type="submit" value="login">
+            </form>
+        </centre>
     <%@ include file="/resources/html/Footer.html" %>
 
 </body>
