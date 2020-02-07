@@ -46,7 +46,7 @@
                     <div class="box">
                         <img height="66px" width="66px" src="<c:url value="${feature.image}" />"><br>
                         <div style="height: 50px;padding: 5px;size: 21px">
-                            <label >${feature.name}</label>
+                            ${feature.name}
                         </div>
 
                     </div>

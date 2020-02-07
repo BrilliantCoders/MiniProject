@@ -59,7 +59,7 @@
 
 
     <div class="containerHead">
-        <b>Take Attendance Manually</b>
+        <b>Take Attendance</b>
     </div>
 
     <form action="${contextPath}/submitAttendance"  method="post">
@@ -69,7 +69,7 @@
 
     <div style="width: 97%;alignment: center;text-align: center;horiz-align: center;margin: 10px">
          <table>
-             <tr>
+             <tr style="text-align: center">
                  <th>Roll No</th>
                  <th>Name</th>
                  <th>Reg. No.</th>
@@ -77,11 +77,11 @@
              </tr>
              <c:forEach var="student" items="${Students}">
                  <tr id="tr${student.regNo}">
-                     <td>${student.rollNo}</td>
+                     <td style="text-align: center">${student.rollNo}</td>
                      <td>${student.name}</td>
                      <td>${student.regNo}</td>
-                     <td>
-                         <input type="checkbox"  index="${student.rollNo}" id="${student.regNo}"  name="checkbox${student.regNo}">
+                     <td style="text-align: center">
+                         <input type="checkbox" style="height: 20px;width: 20px"  index="${student.rollNo}" id="${student.regNo}"  name="checkbox${student.regNo}">
                      </td>
                  </tr>
 
