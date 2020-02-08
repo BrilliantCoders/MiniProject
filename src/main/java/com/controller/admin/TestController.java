@@ -1,7 +1,6 @@
 package com.controller.admin;
 
 import com.helper.MailHelper;
-import org.simplejavamail.mailer.Mailer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +25,7 @@ public class TestController {
     }
 
 
-    @RequestMapping(value="adminLogin")
+    @RequestMapping(value="inLogin")
     public String adminLogin(Model m){
         m.addAttribute("name","Rajat Kathuriya");
        // System.out.println("Login page called");

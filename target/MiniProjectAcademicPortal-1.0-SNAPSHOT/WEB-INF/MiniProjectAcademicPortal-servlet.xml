@@ -6,13 +6,12 @@
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <context:component-scan base-package = "com.controller" />
+    <context:component-scan base-package = "com.controller.admin" />
 
     <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name = "prefix" value = "/WEB-INF/jsp/" />
         <property name = "suffix" value = ".jsp" />
     </bean>
-
     <bean id="mailhelper" class="com.helper.MailHelper"/>
 
     <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -29,6 +28,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="attendanceDao" class="com.database.AttendanceDAO"/>
 
     <bean id="courseDao" class="com.database.CourseDAO"/>
+
+    <bean id="adminloginDao" class="com.database.AdminLoginDAO"/>
 
     <bean id="excelHelper" class="com.helper.ExcelFileHelper"/>
 

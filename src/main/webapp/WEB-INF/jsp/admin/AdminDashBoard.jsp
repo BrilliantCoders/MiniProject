@@ -24,16 +24,14 @@
 </head>
 <body class="body">
 
-
-
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
 
 
 <div class="container">
 
     <div class="containerHead">
-        DashBoard
-    </div>
+    DashBoard
+</div>
 
 
 <div style="display:inline;margin-left:15%;margin-right: 15% ">
