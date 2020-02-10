@@ -26,9 +26,7 @@ public class AdminLoginDAO {
                 public AdminDetail mapRow(ResultSet resultSet, int i) throws SQLException {
 
                     AdminDetail ob=new AdminDetail();
-                    //ob.setAdminId(resultSet.getInt("AdminId"));
-                   // ob.setAdminEmail(resultSet.getString("AdminEmail"));
-                   // ob.setAdminName(resultSet.getString("AdminName"));
+
                     return ob;
 
                 }
