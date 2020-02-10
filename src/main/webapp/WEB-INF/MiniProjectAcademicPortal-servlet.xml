@@ -33,6 +33,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <bean id="excelHelper" class="com.helper.ExcelFileHelper"/>
 
+    <bean id="assignmentDao" class="com.database.AssignmentDAO"/>
+
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 

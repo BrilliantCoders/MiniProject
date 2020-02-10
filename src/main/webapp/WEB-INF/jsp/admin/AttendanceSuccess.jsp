@@ -1,9 +1,8 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: Rajat
-  Date: 25-01-2020
-  Time: 14:17
+  Date: 29-01-2020
+  Time: 22:32
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -24,37 +23,22 @@
 </head>
 <body class="body">
 
+
+
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
 
 
 <div class="container">
 
     <div class="containerHead">
-    DashBoard
-</div>
+        <br>
+        Submitted Successfully
+        <br><br>
+        <form action="${contextPath}/adminDashboard">
+            <input type="submit"class="btn btn-success" value="Back to HomePage">
+        </form>
 
-
-<div style="display:inline;margin-left:15%;margin-right: 15% ">
-
-
-    <ul class="list">
-        <c:forEach var="feature" items="${features}">
-            <li class="listItem">
-                <a href="${contextPath}/${feature.link}" class="link">
-                    <div class="box">
-                        <img height="66px" width="66px" src="<c:url value="${feature.image}" />"><br>
-                        <div style="height: 50px;padding: 5px;size: 21px">
-                            ${feature.name}
-                        </div>
-
-                    </div>
-                </a>
-            </li>
-
-        </c:forEach>
-
-    </ul>
-</div>
+    </div>
 </div>
 
 

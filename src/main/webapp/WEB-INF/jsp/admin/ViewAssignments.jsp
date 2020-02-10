@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Rajat
-  Date: 25-01-2020
-  Time: 18:14
+  Date: 06-02-2020
+  Time: 01:57
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -59,41 +59,35 @@
 
 
     <div class="containerHead">
-        <b>Take Attendance</b>
+        <b>Assignments</b>
     </div>
 
-    <form action="${contextPath}/submitAttendance"  method="post">
-        <input type="hidden" id="absent1" name="absent" value="">
-        <input type="submit" class="btn btn-success" value="Submit Attendance">
-    </form>
+
 
     <div style="width: 97%;alignment: center;text-align: center;horiz-align: center;margin: 10px">
-         <table>
-             <tr style="text-align: center">
-                 <th>Roll No</th>
-                 <th>Name</th>
-                 <th>Reg. No.</th>
-                 <th>P/A</th>
-             </tr>
-             <c:forEach var="student" items="${Students}">
-                 <tr id="tr${student.regNo}">
-                     <td style="text-align: center">${student.rollNo}</td>
-                     <td>${student.name}</td>
-                     <td>${student.regNo}</td>
-                     <td style="text-align: center">
-                         <input type="checkbox" style="height: 20px;width: 20px"  index="${student.rollNo}" id="${student.regNo}"  name="checkbox${student.regNo}">
-                     </td>
-                 </tr>
+        <table>
+            <tr style="text-align: center">
+                <th>Sr. No.</th>
+                <th>Assignment Name</th>
+                <th>Start Date</th>
+                <th>Last Date</th>
+                <th>Late Submission Allowed</th>
+            </tr>
+            <c:forEach var="assgn" items="${assgnList}">
+                <tr id="tr${assgn.id}" style="text-align: center">
+                    <td >${assgn.id}</td>
+                    <td>${assgn.assgnName}</td>
+                    <td>${assgn.startDate}</td>
+                    <td>${assgn.endDate}</td>
+                    <td>${assgn.lateSub}</td>
+                </tr>
 
-             </c:forEach>
-         </table>
+            </c:forEach>
+        </table>
 
-     </div>
+    </div>
 
-     <form action="${contextPath}/submitAttendance" id="form" method="post">
-         <input type="hidden" id="absent" name="absent" value="">
-         <input type="submit" class="btn btn-success" value="Submit Attendance">
-     </form>
+
 
 
 </div>

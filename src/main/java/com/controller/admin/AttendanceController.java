@@ -28,11 +28,18 @@ public class AttendanceController {
         return "admin/ShowStudentList";
     }
 
+
+    @RequestMapping(value = "uploadAttendance")
+    public String uploadAttendance(Model m){
+
+        return "admin/UploadAttendance";
+    }
+
     @RequestMapping(value = "submitAttendance")
     public String submitAttendance(Model m, @RequestParam ("absent") String absent){
         System.out.println(absent);
         dao.markAttendance("6_feb_2020",absent);
-        return "admin/ShowStudentList";
+        return "admin/AttendanceSuccess";
     }
 
 
@@ -44,7 +51,7 @@ public class AttendanceController {
 
 
         dao.markAttendanceViaList(header,list);
-        return "admin/ShowStudentList";
+        return "admin/AttendanceSuccess";
     }
 
 }
