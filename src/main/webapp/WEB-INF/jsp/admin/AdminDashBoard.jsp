@@ -24,16 +24,14 @@
 </head>
 <body class="body">
 
-
-
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
 
 
 <div class="container">
 
     <div class="containerHead">
-        DashBoard
-    </div>
+    DashBoard
+</div>
 
 
 <div style="display:inline;margin-left:15%;margin-right: 15% ">
@@ -46,7 +44,7 @@
                     <div class="box">
                         <img height="66px" width="66px" src="<c:url value="${feature.image}" />"><br>
                         <div style="height: 50px;padding: 5px;size: 21px">
-                            <label >${feature.name}</label>
+                            ${feature.name}
                         </div>
 
                     </div>
