@@ -14,9 +14,10 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/ShowStudentList.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Header.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body>
+<body class="body">
 
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
 
@@ -27,6 +28,12 @@
         Preview Attendance
     </div>
 
+   <br>
+    <div>
+        <form action="${contextPath}/submitAttendanceViaFile">
+            <input type="submit" class="btn btn-success" value="Submit Attendance">
+        </form>
+    </div>
 
 
 
@@ -59,14 +66,16 @@
         </c:forEach>
     </table>
 
+    <br><br>
 
-    <div>
-        <form action="${contextPath}/submitAttendanceViaFile">
-            <input type="submit" value="Submit Attendance">
-        </form>
-    </div>
+
 
 </div>
+    <div>
+        <form action="${contextPath}/submitAttendanceViaFile">
+            <input type="submit" class="btn btn-success" value="Submit Attendance">
+        </form>
+    </div>
 </div>
 
 <%@ include file="/resources/html/Footer.html" %>

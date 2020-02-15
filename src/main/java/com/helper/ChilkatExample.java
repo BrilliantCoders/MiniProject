@@ -1,4 +1,4 @@
-/*package com.helper;
+package com.helper;
 import com.chilkatsoft.*;
 
 public class ChilkatExample {
@@ -71,4 +71,3 @@ public class ChilkatExample {
         System.out.println("Mail Sent!");
     }
 }
-*/
