@@ -30,6 +30,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="courseDao" class="com.database.CourseDAO"/>
 
     <bean id="adminloginDao" class="com.database.AdminLoginDAO"/>
+    <bean id="userloginDao" class"com.database.UserLoginDAO"/>
 
     <bean id="excelHelper" class="com.helper.ExcelFileHelper"/>
 

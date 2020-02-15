@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <title>User Login</title>
+    <title>UserLogin</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
@@ -19,7 +19,7 @@
 
 <div class="container">
     <div class="containerHead">
-        UserLogin
+        User Login
     </div>
     </br>
     </br>
@@ -29,8 +29,8 @@
     <form action="${contextPath}/submitLogin" align="center">
         <table align="center">
             <tr>
-                <td>Reg.ID :</td>
-                <td><input type="Username" name="Username"/> </td>
+                <td>StudentID:</td>
+                <td><input type="StudentID" name="StudentID"/> </td>
             </tr>
             <tr>
                 <td>
@@ -39,7 +39,7 @@
             </tr>
             <tr>
                 <td> Password:</td>
-                <td><input type="Password" name="Password"/> </td>
+                <td><input type="StudentPassword" name="StudentPassword"/> </td>
             </tr>
             <tr>
                 <td>
