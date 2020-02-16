@@ -12,10 +12,7 @@ public class UserLoginDAO {
     @Autowired
     JdbcTemplate template;
 
-
-
-    public boolean authenticate(String userID,String userPassword)
-    {
+    public boolean authenticate(String userID,String userPassword) {
         String query="select * from user_Login  where UserName='"+userID+"' and Password='"+userPassword+"'; ";
         System.out.println(query);
         UserDetail user=null;

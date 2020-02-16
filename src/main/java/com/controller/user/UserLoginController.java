@@ -15,7 +15,7 @@ public class UserLoginController {
 
     @Autowired
     UserLoginDAO dao;
-    @RequestMapping(value="userLogin")
+    @RequestMapping(value = "userLogin")
     public String init(Model model)
     {
         return "user/UserLogin";
@@ -44,7 +44,7 @@ public class UserLoginController {
 
 
 
-            return "user/UserLogin";
+            return "admin/AdminDashBoard";
         }
 
         else
