@@ -21,7 +21,7 @@ public class UserLoginController {
         return "user/UserLogin";
     }
 
-    @RequestMapping (value="submitLogin")
+    @RequestMapping (value="submitUserLogin")
     public String submit(Model m, @ModelAttribute("StudentID") String userID,@ModelAttribute("StudentPassword") String userPassword){
         boolean isLogin = dao.authenticate(userID,userPassword);
         if(isLogin==true) {

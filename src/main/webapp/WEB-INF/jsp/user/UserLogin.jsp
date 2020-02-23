@@ -26,7 +26,7 @@
     </br>
     </br>
 
-    <form action="${contextPath}/submitLogin" align="center">
+    <form action="${contextPath}/submitUserLogin" align="center">
         <table align="center">
             <tr>
                 <td>StudentID:</td>
