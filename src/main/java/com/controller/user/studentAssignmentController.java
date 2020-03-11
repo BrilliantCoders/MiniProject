@@ -1,6 +1,7 @@
-package com.controller.admin;
+package com.controller.user;
 
-import com.database.AssignmentDAO;
+
+import com.database.StudentAssignmentDAOImpl;
 import com.model.Assignment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,29 +16,33 @@ import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-
 @Controller
-public class AssignmentController {
-
+public class studentAssignmentController {
     @Autowired
-    AssignmentDAO dao;
+    StudentAssignmentDAOImpl dao;
 
-    @RequestMapping(value = "assignment")
-    public String assignment(Model m){
-        Assignment asgn=new Assignment();
-        m.addAttribute("assignment",asgn);
-        return "admin/UploadAssignment";
+    @RequestMapping(value = "studentAssignment")
+    public String studentAssignment(){
+        return "user/studentUploadAssignment";
     }
 
-    @RequestMapping(value = "uploadAssignment")
-    public String uploadAssignment(Assignment asgn, @RequestParam("file") CommonsMultipartFile file, HttpSession session, HttpServletRequest req) {
+    @RequestMapping(value = "/fetch")
+    public ModelAndView listDetail(ModelAndView model) throws IOException {
+        List<Assignment> listDet =dao.getAssignList();
+        model.addObject("listDet", listDet);
+        model.setViewName("user/studentUploadAssignment");
+
+        return  model;
+    }
+
+    @RequestMapping(value = "uploadStudentAssignment")
+    public String uploadAssignment(Assignment stud, @RequestParam("file") CommonsMultipartFile file, HttpSession session, HttpServletRequest req) {
         System.out.println(req.getRequestURI());
         String dates=(String) req.getParameter("date");
 
@@ -56,9 +61,9 @@ public class AssignmentController {
         String filename = file.getOriginalFilename();
 
         System.out.println(path + " " + filename);
-        asgn.setEndDate(date);
-        asgn.setStartDate(asgn.getEndDate());
-        asgn.setAssgnLink(filename);
+        stud.setEndDate(date);
+        stud.setStartDate(stud.getEndDate());
+        stud.setAssgnLink(filename);
 
         try {
             byte barr[] = file.getBytes();
@@ -73,15 +78,9 @@ public class AssignmentController {
             System.out.println(e);
         }
 
-        dao.upload(asgn);
+        dao.upload(stud);
         return "admin/AttendanceSuccess";
     }
 
-    @RequestMapping(value = "viewAssignment")
-    public String viewAssignment(Model m){
-        List<Assignment> list=dao.getAssignmentList();
-        m.addAttribute("assgnList",list);
-        return "admin/ViewAssignments";
-    }
 
 }
