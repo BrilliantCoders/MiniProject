@@ -3,6 +3,7 @@ package com.model;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public @Data
 class Student implements Comparable<Student>{
@@ -10,6 +11,7 @@ class Student implements Comparable<Student>{
     int rollNo;
     ArrayList<String> present,absent;
     String password;
+
 
 
     public int compareTo(Student s) {
