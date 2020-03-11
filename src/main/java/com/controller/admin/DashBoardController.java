@@ -24,7 +24,7 @@ public class DashBoardController {
         list.add(new Feature("Upload\nAttendance","uploadAttendance","/resources/image/uploaddoc.ico"));
         list.add(new Feature("Mark\nAttendance","attendanceList","/resources/image/atten.png"));
         list.add(new Feature("Performance\nRecord","/attendance","/resources/image/per.png"));
-        list.add(new Feature("Teaching\nMaterial","uploadQuiz","/resources/image/teaching_material.png"));
+        list.add(new Feature("Teaching\nMaterial","addMaterial","/resources/image/teaching_material.png"));
         list.add(new Feature("Laboratory\nRecord","attendance","/resources/image/lab.png"));
         list.add(new Feature("Upload New Notice","attendance","/resources/image/notify2.png"));
         list.add(new Feature("Change\nPassword","/attendance","/resources/image/chgpass.png"));

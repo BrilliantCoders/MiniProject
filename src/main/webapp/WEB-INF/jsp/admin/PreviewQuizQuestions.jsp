@@ -22,6 +22,8 @@
             background: #dddddd;
             font-weight: bold;
             padding: 8px;
+            white-space: pre-wrap;
+            word-wrap: break-word
         }
         .answer{
             color: #0d9e08;
@@ -30,6 +32,7 @@
         .invalid{
             color: red;
             font-weight: bold;
+
         }
     </style>
 
@@ -67,8 +70,8 @@
         <ol>
             <c:forEach var="question" items="${questionList}">
                  <li>
-                     <div class="question">
-                         <pre>${question.question}</pre>
+                     <div >
+                         <pre class="question">${question.question}</pre>
                      </div>
                      <div class="option">
                          1.) ${question.option1}

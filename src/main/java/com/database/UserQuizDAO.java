@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +21,7 @@ public class UserQuizDAO {
     public List<Question> getQuestionList(int quizId){
         List<Question> list=new ArrayList<Question>();
 
-        String query="select Id, Question, Option1, Option2, Option3, Option4, Answer from ds_mca_second_quiz_"+quizId+";";
+        String query="select Id, Question, Option1, Option2, Option3, Option4, Answer, Explanation from ds_mca_second_quiz_"+quizId+";";
         list=template.query(query, new RowMapper<Question>() {
             public Question mapRow(ResultSet resultSet, int i) throws SQLException {
                 Question ob=new Question();
@@ -32,7 +33,7 @@ public class UserQuizDAO {
                 ob.setOption3(resultSet.getString("Option3"));
                 ob.setOption4(resultSet.getString("Option4"));
                 ob.setAnswer(resultSet.getInt("Answer"));
-
+                ob.setExpanation(resultSet.getString("Explanation"));
                 return ob;
             }
         });
@@ -58,6 +59,7 @@ public class UserQuizDAO {
                 else {
                     ob.setActive(0);
                 }
+
 
                 return ob;
             }

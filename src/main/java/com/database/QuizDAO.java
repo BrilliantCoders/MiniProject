@@ -5,8 +5,10 @@ import com.model.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -28,13 +30,19 @@ public class QuizDAO {
                 ","+quiz.getDuration()+",'ds_mca_second');";
 
         template.update(query);
-        uploadQuestions(questions,1);
+        query="select max(id) as Id from quizzes";
+        Integer id=template.queryForObject(query, new RowMapper<Integer>() {
+            public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getInt("Id");
+            }
+        });
+        uploadQuestions(questions,id);
 
     }
 
     public void uploadQuestions(final List<Question> questions, int QuizId){
 
-        String query="CREATE TABLE ds_mca_second_quiz_1 (\n" +
+        String query="CREATE TABLE ds_mca_second_quiz_"+QuizId+" (\n" +
                 "  `Id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,\n" +
                 "  `Question` LONGTEXT NOT NULL,\n" +
                 "  `Option1` TEXT NOT NULL,\n" +
@@ -47,7 +55,7 @@ public class QuizDAO {
                 ")";
 
         template.update(query);
-        query="insert into ds_mca_second_quiz_1 (Question,Option1,Option2,Option3,Option4,Answer,Explanation) values (?,?,?,?,?,?,?)";
+        query="insert into ds_mca_second_quiz_"+QuizId+" (Question,Option1,Option2,Option3,Option4,Answer,Explanation) values (?,?,?,?,?,?,?)";
 
         template.batchUpdate(query, new BatchPreparedStatementSetter() {
             public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {

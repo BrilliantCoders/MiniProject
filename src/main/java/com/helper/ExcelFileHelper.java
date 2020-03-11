@@ -232,6 +232,8 @@ public class ExcelFileHelper {
                         case 6:
                             ob.setAnswer(Integer.parseInt(getCellValue(cell).trim()));
                             break;
+                        case 7:
+                            ob.setExpanation(getCellValue(cell));
 
                     }
 

@@ -39,6 +39,10 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <bean id="userQuizDao" class="com.database.UserQuizDAO"/>
 
+    <bean id="fileUploadHelper" class="com.helper.FileUploadHelper"/>
+
+    <bean id="uploadTeachingMaterialDao" class="com.database.TeachingMaterialDAO"/>
+
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 

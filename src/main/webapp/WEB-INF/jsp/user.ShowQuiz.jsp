@@ -22,7 +22,9 @@
     <style>
         .question{
             background: #dddddd;
+            white-space: pre-wrap;
             font-weight: bold;
+            width: 100%;
             padding: 8px;
         }
     </style>
@@ -105,13 +107,15 @@
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             // Display the result in the element with id="demo"
-            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-                + minutes + "m " + seconds + "s ";
+            //days + "d " +
+            document.getElementById("demo").innerHTML = "Time Left <br>"+ hours + " : "
+                + minutes + " : " + seconds + "";
 
             // If the count down is finished, write some text
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("demo").innerHTML = "EXPIRED";
+                $('#myform').submit();
             }
             distance-=1000;
         }, 1000);
@@ -123,65 +127,61 @@
 
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
 
+<div id="demo" style="color: red;font-size: 20px;position: fixed;margin-top: 110px;margin-left: 0px;
+padding: 12px;box-shadow: 0 3px 3px 0 rgba(0,0,0,0.2);
+background: white">
+
+</div>
 
 <div class="container">
-
-    <div id="demo" style="color: red;size: 25px">
-
-    </div>
-
-    <br>
-
-
-    <br>
-    <button onclick="submit()" value="Sub">Submit Question</button><br>
-    <div>
-
-
-        <form action="${contextPath}/submitQuiz" id="submitQuiz">
-            <input type="submit" class="btn btn-success" value="Submit Quiz">
-        </form>
-    </div>
 
 
 
     <div style="width: 100%;">
-        <ol>
-            <c:forEach var="question" items="${questionList}">
+        <br>
+        <br>
+        <form:form modelAttribute="questionListWrapper" action="${contextPath}/submitResponses" id="myform">
+
+            <input type="submit" class="btn btn-success" value="Submit Quiz"><br><br>
+
+            <ol>
+            <c:forEach varStatus="qno" var="question" items="${questionListWrapper.questionList}">
                 <li>
-                    <div class="question">
-                        <pre>${question.question}</pre>
+                    <div >
+                        <pre class="question">${question.question}</pre>
                     </div>
 
+                    <form:hidden path="questionList[${qno.index}].question"/>
+                    <form:hidden path="questionList[${qno.index}].option1"/>
+                    <form:hidden path="questionList[${qno.index}].option2"/>
+                    <form:hidden path="questionList[${qno.index}].option3"/>
+                    <form:hidden path="questionList[${qno.index}].option4"/>
+                    <form:hidden path="questionList[${qno.index}].answer"/>
 
 
                     <div class="option">
-                       <input type="radio" value="1" name="${question.id}"> 1.) ${question.option1}
+                        <form:radiobutton path="questionList[${qno.index}].userAnswer"  value="1" name="${question.id}" /> 1.) ${question.option1}
                     </div>
                     <div class="option">
-                        <input type="radio" value="2" name="${question.id}"> 2.) ${question.option2}
+                        <form:radiobutton path="questionList[${qno.index}].userAnswer"  value="2" name="${question.id}" /> 2.) ${question.option2}
                     </div>
                     <div class="option">
-                        <input type="radio" value="3" name="${question.id}"> 3.) ${question.option3}
+                        <form:radiobutton path="questionList[${qno.index}].userAnswer"  value="3" name="${question.id}" /> 3.) ${question.option3}
                     </div>
                     <div class="option">
-                        <input type="radio" value="4" name="${question.id}"> 4.) ${question.option4}
+                        <form:radiobutton path="questionList[${qno.index}].userAnswer"  value="4" name="${question.id}" /> 4.) ${question.option4}
                     </div>
 
                     <br><br>
                 </li>
             </c:forEach>
-        </ol>
-        <br><br>
-
-
-
-    </div>
-    <div>
-        <form action="${contextPath}/submitQuiz">
+            </ol>
+            <br><br>
             <input type="submit" class="btn btn-success" value="Submit Quiz">
-        </form>
+        </form:form>
     </div>
+
+
 </div>
 
 <%@ include file="/resources/html/Footer.html" %>
