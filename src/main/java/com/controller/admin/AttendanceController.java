@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -21,6 +25,8 @@ public class AttendanceController {
 
     @RequestMapping(value = "attendanceList")
     public String showStudentList(Model m){
+
+
         List<Student> list=dao.getStudentList();
         Collections.sort(list);
 
@@ -37,8 +43,11 @@ public class AttendanceController {
 
     @RequestMapping(value = "submitAttendance")
     public String submitAttendance(Model m, @RequestParam ("absent") String absent){
-        System.out.println(absent);
-        dao.markAttendance("6_feb_2020",absent);
+        SimpleDateFormat formatter = new SimpleDateFormat("EEE_MMM_dd_00_00_00_zzz_yyyy");
+        Date date = new Date();
+        String dt=formatter.format(date);
+
+        dao.markAttendance(dt,absent);
         return "admin/AttendanceSuccess";
     }
 

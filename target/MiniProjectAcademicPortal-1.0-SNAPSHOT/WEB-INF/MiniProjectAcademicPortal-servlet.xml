@@ -35,6 +35,8 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <bean id="excelHelper" class="com.helper.ExcelFileHelper"/>
 
+
+
     <bean id="assignmentDao" class="com.database.AssignmentDAO"/>
     <bean id="studentAssignmentDao" class="com.database.StudentAssignmentDAOImpl"/>
 
@@ -47,6 +49,11 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="uploadTeachingMaterialDao" class="com.database.TeachingMaterialDAO"/>
 
     <bean id="noticeDao" class="com.database.NoticeDAO"/>
+
+    <bean id="labRecoredHelper" class="com.helper.LabRecordHelper"/>
+
+    <bean id="labRecordDao" class="com.database.LabRecordDAO"/>
+
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />

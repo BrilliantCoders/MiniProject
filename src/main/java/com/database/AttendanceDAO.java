@@ -81,7 +81,17 @@ public class AttendanceDAO {
         }
         ab=ab.substring(0,ab.length()-1);
 
-        String query="update ds_mca_second_attendance set "+date+"='P';";
+
+
+        try {
+            String query="Alter table ds_mca_second_attendance drop column "+date+";";
+            template.update(query);
+        }
+        catch (Exception e){
+
+        }
+
+        String query="Alter table ds_mca_second_attendance add column "+date+" VARCHAR(55) NOT NULL DEFAULT 'P'";
         template.update(query);
 
 
