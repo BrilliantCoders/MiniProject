@@ -16,7 +16,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://localhost:3306/db"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/portaldb"></property>
         <property name="username" value="root"></property>
         <property name="password" value="root"></property>
     </bean>
@@ -27,6 +27,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <bean id="attendanceDao" class="com.database.AttendanceDAO"/>
 
+
     <bean id="courseDao" class="com.database.CourseDAO"/>
 
     <bean id="adminloginDao" class="com.database.AdminLoginDAO"/>
@@ -34,8 +35,25 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <bean id="excelHelper" class="com.helper.ExcelFileHelper"/>
 
+
+
     <bean id="assignmentDao" class="com.database.AssignmentDAO"/>
     <bean id="studentAssignmentDao" class="com.database.StudentAssignmentDAOImpl"/>
+
+    <bean id="quizDao" class="com.database.QuizDAO"/>
+
+    <bean id="userQuizDao" class="com.database.UserQuizDAO"/>
+
+    <bean id="fileUploadHelper" class="com.helper.FileUploadHelper"/>
+
+    <bean id="uploadTeachingMaterialDao" class="com.database.TeachingMaterialDAO"/>
+
+    <bean id="noticeDao" class="com.database.NoticeDAO"/>
+
+    <bean id="labRecoredHelper" class="com.helper.LabRecordHelper"/>
+
+    <bean id="labRecordDao" class="com.database.LabRecordDAO"/>
+
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />

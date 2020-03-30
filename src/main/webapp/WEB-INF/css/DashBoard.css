@@ -1,0 +1,23 @@
+.box{
+    border-radius: 7px;
+    border: 1px solid #BFBFBF;
+    background-color: white;
+    box-shadow: 5px 5px 2px #aaaaaa;
+    padding: 10px;
+    width: 90px;
+    height: 90px;
+    margin: 10px;
+    display: inline-block;
+    text-align: center;
+
+
+}
+.listItem{
+
+    display: inline;
+}
+.link{
+    text-decoration: none;
+    color: black;
+}
+

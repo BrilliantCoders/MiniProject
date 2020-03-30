@@ -1,5 +1,6 @@
 package com.helper;
 
+import com.model.Question;
 import com.model.Student;
 import org.apache.poi.hssf.extractor.OldExcelExtractor;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -7,6 +8,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.swing.text.DateFormatter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -14,8 +16,6 @@ import java.util.ArrayList;
 public class ExcelFileHelper {
 
     public Sheet getExcelSheet(CommonsMultipartFile file) throws IOException {
-
-        System.out.println("ree");
 
         InputStream fis = file.getInputStream();
         Workbook wb=null;
@@ -48,6 +48,26 @@ public class ExcelFileHelper {
         return sheet;
 
     }
+
+    public String getCellValue(Cell cell){
+        DataFormatter formatter=new DataFormatter();
+        String val=formatter.formatCellValue(cell);;
+        /*switch (cell.getCellType()){
+            case STRING: val=cell.getStringCellValue();
+                break;
+            case NUMERIC: val=String.valueOf(cell.getNumericCellValue());
+                break;
+            case BOOLEAN: val=String.valueOf(cell.getBooleanCellValue());
+                break;
+            default:
+            val=String.valueOf(cell.getDateCellValue());
+                break;
+
+        }
+*/
+        return val;
+    }
+
 
     public ArrayList<String> getHeaderFromExcelSheet(Sheet sheet){
 
@@ -167,4 +187,80 @@ public class ExcelFileHelper {
 
         return students;
     }
+
+
+
+
+
+    public ArrayList<Question> getQuestionListFromExcelSheet(Sheet sheet){
+
+        int i = 0, j = 0;
+        ArrayList<Question> questions = new ArrayList<Question>();
+        for (Row row : sheet)     //iteration over row using for each loop
+        {
+
+            Question ob = new Question();
+            j=0;
+            if (i != 0) {
+                for (Cell cell : row)    //iteration over cell using for each loop
+                {
+                    //if(cell.getCellTypeEnum()== CellType.STRING){
+                    switch (j) {
+                        case 0:
+                            //ob.setQuestion(cell.getStringCellValue());
+                            break;
+                        case 1:
+                            ob.setQuestion(getCellValue(cell));
+                            break;
+                        case 2:
+                            ob.setOption1(getCellValue(cell));
+                            break;
+
+                        case 3:
+                            ob.setOption2(getCellValue(cell));
+                            break;
+
+
+                        case 4:
+                            ob.setOption3(getCellValue(cell));
+                            break;
+
+                        case 5:
+                            ob.setOption4(getCellValue(cell));
+                            break;
+
+                        case 6:
+                            ob.setAnswer(Integer.parseInt(getCellValue(cell).trim()));
+                            break;
+                        case 7:
+                            ob.setExpanation(getCellValue(cell));
+
+                    }
+
+                    j++;
+                }
+                questions.add(ob);
+            }
+            i++;
+
+        }
+        System.out.println(questions.size());
+        return questions;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
