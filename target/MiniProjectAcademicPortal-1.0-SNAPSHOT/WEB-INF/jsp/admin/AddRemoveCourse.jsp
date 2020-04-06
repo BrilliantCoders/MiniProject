@@ -7,11 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %><html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/ShowStudentList.css"/>" />
+
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Header.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -29,10 +29,54 @@
     </div>
 
     <div style="width: 100%;alignment: center;text-align: center">
-        <form action="${contextPath}/uploadCourse"  method="post" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <input type="submit" value="Submit">
-        </form>
+        <form:form action="${contextPath}/uploadCourse" modelAttribute="course"  method="post" enctype="multipart/form-data">
+            <table cellpadding="12px" cellspacing="3px" align="center" style="color: black">
+                <tr>
+                    <td>Course Name </td>
+                    <td><form:input path="courseName"/></td>
+                    <td>(E.g. Btech or MCA or MBA ...)</td>
+                </tr>
+                <tr>
+                    <td>Branch Name </td>
+                    <td><form:input path="branchName"/></td>
+                    <td>(E.g. CS,IT,EC,...  Fill NA if not applicable)</td>
+                </tr>
+                <tr>
+                    <td>Semester </td>
+                    <td><form:input path="semester" /></td>
+                    <td>(Enter Number like 1 or 2 or 3 ...)</td>
+                </tr>
+                <tr>
+                    <td>Subject Name</td>
+                    <td><form:input path="subName"/></td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>
+                        <form:select path="type">
+                            <form:option value="0">Class</form:option>
+                            <form:option value="1">Lab</form:option>
+                            <form:option value="2">Class and Lab both</form:option>
+                        </form:select>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>Current Year</td>
+                    <td><form:input path="year"/></td>
+                </tr>
+                <tr>
+                    <td>Upload File</td>
+                    <td><input type="file" name="file"></td>
+                </tr>
+
+            </table>
+            <br>
+            <input type="submit" value="Submit" class="btn btn-success">
+
+
+
+        </form:form>
 
     </div>
 </div>
