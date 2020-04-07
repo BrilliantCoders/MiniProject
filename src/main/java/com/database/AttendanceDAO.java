@@ -3,6 +3,7 @@ package com.database;
 import com.model.Student;
 import com.mysql.jdbc.DatabaseMetaData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.TransientDataAccessResourceException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -128,18 +129,64 @@ public class AttendanceDAO {
 
     }
 
+
+
+
+    public List<String> getAttendanceHeader(){
+
+
+        String query="SHOW columns FROM ds_mca_second_attendance";
+        List<String> list=template.query(query, new RowMapper<String>() {
+            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getString("Field");
+            }
+        });
+        System.out.println(list);
+        return list;
+    }
+
+
+
     public List<Student> getAttendance(){
-        String query="select * from ds_mca_second_attendance";
+
+
+        String query="select * FROM ds_mca_second_attendance order by RollNo asc";
         List<Student> list=template.query(query, new RowMapper<Student>() {
             public Student mapRow(ResultSet resultSet, int i) throws SQLException {
                 Student s=new Student();
-                s.setRollNo(resultSet.getInt("RollNo"));
-                s.setRegNo(resultSet.getString("RegNo"));
 
+                s.setRegNo(resultSet.getString(1));
+                s.setRollNo(resultSet.getInt(2));
+                int j=3;
+                String ab="";
+                ArrayList<String> present=new ArrayList<String>();
+                int pre=0,abs=0;
+                try {
+                    while ((ab=resultSet.getString(j))!=null){
+                        present.add(ab);
+                        if(ab.equalsIgnoreCase("P"))
+                            pre++;
+                        else
+                            abs++;
+                        j++;
+                    }
+                }
+                catch (Exception e){
+
+                }
+
+                if(pre==0 && abs==0){
+                    s.setPercent(100);
+                }
+                else{
+                    s.setPercent(((pre*1.0)/(pre+abs))*100);
+                }
+
+                s.setPresent(present);
                 return s;
             }
         });
-
+        System.out.println(list);
         return list;
     }
 
