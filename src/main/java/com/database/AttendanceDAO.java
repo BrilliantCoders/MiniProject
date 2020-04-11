@@ -128,5 +128,20 @@ public class AttendanceDAO {
 
     }
 
+    public List<Student> getAttendance(){
+        String query="select * from ds_mca_second_attendance";
+        List<Student> list=template.query(query, new RowMapper<Student>() {
+            public Student mapRow(ResultSet resultSet, int i) throws SQLException {
+                Student s=new Student();
+                s.setRollNo(resultSet.getInt("RollNo"));
+                s.setRegNo(resultSet.getString("RegNo"));
+
+                return s;
+            }
+        });
+
+        return list;
+    }
+
 
 }

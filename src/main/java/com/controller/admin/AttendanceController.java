@@ -2,16 +2,19 @@ package com.controller.admin;
 
 import com.database.AttendanceDAO;
 import com.model.Student;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -61,6 +64,24 @@ public class AttendanceController {
 
         dao.markAttendanceViaList(header,list);
         return "admin/AttendanceSuccess";
+    }
+
+
+    @RequestMapping(value = "showAttendance")
+    public String showAttendance(Model m, HttpSession session, HttpServletRequest req) {
+
+
+        ArrayList<Student> list=new ArrayList<Student>();
+        ArrayList<String> headers=new ArrayList<String>();
+        /*headers=helper.getHeaderFromExcelSheet(sheet);
+        list=helper.getArrayFromExcelSheet(sheet);
+*/
+        m.addAttribute("AttendanceHeader", headers);
+        m.addAttribute("AttendanceList", list);
+        req.getSession().setAttribute("AttendanceList",list);
+        req.getSession().setAttribute("AttendanceHeader",headers);
+        System.out.println(list.size()+" q"+headers.get(0));
+        return "admin/ShowAttendanceExcelPreview";
     }
 
 }
