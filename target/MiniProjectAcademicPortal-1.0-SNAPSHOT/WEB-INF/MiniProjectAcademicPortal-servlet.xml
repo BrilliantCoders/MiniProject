@@ -47,6 +47,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="fileUploadHelper" class="com.helper.FileUploadHelper"/>
 
     <bean id="uploadTeachingMaterialDao" class="com.database.TeachingMaterialDAO"/>
+    <bean id="viewTeachingMaterialDao" class="com.database.ViewTeachingMaterialDAO"/>
 
     <bean id="noticeDao" class="com.database.NoticeDAO"/>
 
