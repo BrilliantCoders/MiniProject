@@ -26,11 +26,25 @@
     </br>
     </br>
 
-    <form action="${contextPath}/submitLogin" align="center">
+    <form action="${contextPath}/admin/login" align="center" method="post">
+        <c:if test="${param.error != null}">
+        <p>
+            Invalid username and password.
+        </p>
+        </c:if>
+        <c:if test="${param.logout != null}">
+        <p>
+            You have been logged out.
+        </p>
+        </c:if>
+
+
+
+
         <table align="center">
         <tr>
             <td>UserName:</td>
-            <td><input type="Username" name="Username"/> </td>
+            <td><input type="username" name="username"/> </td>
         </tr>
         <tr>
             <td>
@@ -39,7 +53,7 @@
         </tr>
             <tr>
                 <td> Password:</td>
-                <td><input type="Password" name="Password"/> </td>
+                <td><input type="password" name="password"/> </td>
             </tr>
             <tr>
                 <td>
@@ -47,7 +61,9 @@
                 </td>
             </tr>
         <tr>
-            <td> </td>
+            <td><input type="hidden"
+                       name="${_csrf.parameterName}"
+                       value="${_csrf.token}"/>   </td>
             <td><input type="submit" name="submit" align="center"></td>
         </tr>
         </table>
