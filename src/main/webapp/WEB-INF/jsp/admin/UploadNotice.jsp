@@ -55,7 +55,7 @@
                         </table>
                         <br>
                         <input type="submit" value="Submit" class="btn btn-success">
-                    </div>
+                    </div> 
                 </form>
 
             </div>
