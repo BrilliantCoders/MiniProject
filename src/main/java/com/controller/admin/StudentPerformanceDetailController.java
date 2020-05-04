@@ -21,13 +21,13 @@ public class StudentPerformanceDetailController {
 
 
 
-    @RequestMapping(value = "studentPerformanceDetail/{id}")
+    @RequestMapping(value = "/admin/studentPerformanceDetail/{id}")
     public String deleteNotice(@PathVariable("id") String id, Model m, HttpServletRequest req){
         //m.addAttribute("Notices",list);
         return "admin/StudentPerformanceDetail";
     }
 
-    @RequestMapping(value = "studentList")
+    @RequestMapping(value = "/admin/studentList")
     public String showStudentList(Model m){
 
         List<Student> list=dao.getStudentList();

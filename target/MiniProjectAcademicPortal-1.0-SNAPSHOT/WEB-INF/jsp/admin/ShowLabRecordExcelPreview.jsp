@@ -38,7 +38,7 @@
 
     <br>
     <div>
-        <form action="${contextPath}/submitLabRecordViaFile">
+        <form action="${contextPath}/admin/submitLabRecordViaFile">
             <input type="submit" class="btn btn-success" value="Submit Marks">
         </form>
     </div>
@@ -78,7 +78,7 @@
 
     </div>
     <div>
-        <form action="${contextPath}/submitLabRecordViaFile">
+        <form action="${contextPath}/admin/submitLabRecordViaFile">
             <input type="submit" class="btn btn-success" value="Submit Marks">
         </form>
     </div>

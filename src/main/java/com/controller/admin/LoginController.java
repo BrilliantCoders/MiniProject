@@ -15,27 +15,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class LoginController {
 
     @Autowired
     AdminLoginDAO dao;
-    @RequestMapping(value = "admin/login")
+    @RequestMapping(value = "/admin/login")
     public String init(Model model) {
-        //1
+        List<String> list=dao.getAllCourses();
+        model.addAttribute("Courses",list);
         return "admin/AdminLogin";
     }
 
-    @RequestMapping(value = "admin/submitLogin")
+    @RequestMapping(value = "/admin/subLogin")
     public String submit(Model m, @ModelAttribute("Username") String userName,@ModelAttribute("Password") String password) {
-        //3
+        /*
         System.out.println("My Username is "+userName+"  Password is "+password);
 
         boolean isLogin = dao.authenticate(userName,password);
 
         if(isLogin==true) {
-
+       */
             ArrayList<Feature> list=new ArrayList<Feature>();
             String path="/resources/image";
             list.add(new Feature("Mark\nAttendance","attendanceList","/resources/image/atten.png"));
@@ -55,10 +57,10 @@ public class LoginController {
 
 
             return "admin/AdminDashBoard";
-        }
+  /*      }
         else
             return "admin/AdminLogin";
-    }
+  */  }
 
 
 

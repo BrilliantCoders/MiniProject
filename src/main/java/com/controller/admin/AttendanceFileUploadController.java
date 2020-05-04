@@ -27,7 +27,7 @@ public class AttendanceFileUploadController {
     @Autowired
     ExcelFileHelper helper;
 
-    @RequestMapping(value = "saveFile")
+    @RequestMapping(value = "/admin/saveFile")
     public String upload(Model m, @RequestParam("file") CommonsMultipartFile file, HttpSession session, HttpServletRequest req) {
 
 

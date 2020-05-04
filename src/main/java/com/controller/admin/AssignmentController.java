@@ -33,14 +33,14 @@ public class AssignmentController {
     @Autowired
     AssignmentDAO dao;
 
-    @RequestMapping(value = "assignment")
+    @RequestMapping(value = "/admin/assignment")
     public String assignment(Model m){
         Assignment asgn=new Assignment();
         m.addAttribute("assignment",asgn);
         return "admin/UploadAssignment";
     }
 
-    @RequestMapping(value = "uploadAssignment")
+    @RequestMapping(value = "/admin/uploadAssignment")
     public String uploadAssignment(Assignment asgn, @RequestParam("file") CommonsMultipartFile file, HttpSession session, HttpServletRequest req) {
         System.out.println(req.getRequestURI());
         String dates=(String) req.getParameter("date");
@@ -81,7 +81,7 @@ public class AssignmentController {
         return "admin/AttendanceSuccess";
     }
 
-    @RequestMapping(value = "viewAssignment")
+    @RequestMapping(value = "/admin/viewAssignment")
     public String viewAssignment(Model m){
         List<Assignment> list=dao.getAssignmentList();
         m.addAttribute("assgnList",list);
@@ -92,7 +92,7 @@ public class AssignmentController {
 
 
 
-    @RequestMapping(value = "deleteAssignment/{id}")
+    @RequestMapping(value = "/admin/deleteAssignment/{id}")
     public String deleteNotice(@PathVariable("id") String id, Model m, HttpServletRequest req){
         dao.remove( Integer.parseInt(id));
         List<Assignment> list=dao.getAssignmentList();

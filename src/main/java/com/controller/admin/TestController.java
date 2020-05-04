@@ -13,7 +13,7 @@ public class TestController {
     @Autowired
     MailHelper mailHelper;
 
-    @RequestMapping(value = "test")
+    @RequestMapping(value = "/admin/test")
     public String test(){
 
        // mailHelper.send();
@@ -25,7 +25,7 @@ public class TestController {
     }
 
 
-    @RequestMapping(value="inLogin")
+    @RequestMapping(value="/admin/inLogin")
     public String adminLogin(Model m){
         m.addAttribute("name","Rajat Kathuriya");
        // System.out.println("Login page called");
@@ -33,7 +33,7 @@ public class TestController {
     }
 
 
-    @RequestMapping(value="submit")
+    @RequestMapping(value="/admin/submit")
     public String submit(@RequestParam ("email") String email){
         System.out.println("My Email is "+email);
         return "test";

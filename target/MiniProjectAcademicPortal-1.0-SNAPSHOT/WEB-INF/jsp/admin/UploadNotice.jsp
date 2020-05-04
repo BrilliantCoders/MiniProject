@@ -40,7 +40,7 @@
             </div>
             <div>
 
-                <form action="${contextPath}/uploadNotice" method="post"  >
+                <form action="${contextPath}/admin/uploadNotice" method="post"  >
                     <div style="text-align: center;width: 100%;">
                         <table cellpadding="9px" align="center">
                             <tr>

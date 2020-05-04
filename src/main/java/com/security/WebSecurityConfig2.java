@@ -24,7 +24,11 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery(
-                        "select username,password, enabled from users where username=?");
+                        "select RegNo as username,Password as password,Active as enabled from ds_mca_second_student " +
+                                "where RegNo=?")
+
+                .authoritiesByUsernameQuery(
+                        "select RegNo as username,Role as role from ds_mca_second_student where RegNo=?");
     }
 
    /* @Override
@@ -37,11 +41,12 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .antMatcher("/**")
-                .authorizeRequests().anyRequest().authenticated()
-                .and().formLogin().loginPage("/login")
-                .defaultSuccessUrl("/dashboard", true)
+                .authorizeRequests().anyRequest()
+                .access("hasRole('ROLE_USER')")//.authenticated()
+                .and().formLogin().loginPage("/user/login")
+                .defaultSuccessUrl("/user/dashboard", true)
                 .permitAll()
-                .and().logout().logoutSuccessUrl("/login");
+                .and().logout().logoutSuccessUrl("/user/login");
 
         http.csrf().disable();
     }

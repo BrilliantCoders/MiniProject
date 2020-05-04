@@ -25,7 +25,7 @@ public class CourseController {
     @Autowired
     CourseDAO dao;
 
-    @RequestMapping(value = "addRemoveCourse")
+    @RequestMapping(value = "/admin/addRemoveCourse")
     public String addRemoveCourse(Model m){
         Course ob=new Course();
         m.addAttribute("course",ob);
@@ -34,7 +34,7 @@ public class CourseController {
     }
 
 
-    @RequestMapping(value = "uploadCourse")
+    @RequestMapping(value = "/admin/uploadCourse")
     public String uploadCourse(Model m, @RequestParam("file") CommonsMultipartFile file, HttpServletRequest request,Course c){
         ArrayList<Student> list=new ArrayList<Student>();
         try {
@@ -53,7 +53,7 @@ public class CourseController {
     }
 
 
-    @RequestMapping(value = "addCourseStudent")
+    @RequestMapping(value = "/admin/addCourseStudent")
     public String addCourseStudent(Model m,HttpServletRequest request){
 
         ArrayList<Student> list=(ArrayList<Student>) request.getSession().getAttribute("StudentList");
@@ -64,7 +64,7 @@ public class CourseController {
 
     }
 
-    @RequestMapping(value = "showCourses")
+    @RequestMapping(value = "/admin/showCourses")
     public String showCourses(Model m,HttpServletRequest request) {
         List<Course> list=dao.showCourse();
         m.addAttribute("Courses",list);

@@ -21,12 +21,12 @@ public class NoticeController {
     @Autowired
     NoticeDAO dao;
 
-    @RequestMapping(value = "addNotice")
+    @RequestMapping(value = "/admin/addNotice")
     public String addNotice(){
         return "admin/UploadNotice";
     }
 
-    @RequestMapping(value = "uploadNotice")
+    @RequestMapping(value = "/admin/uploadNotice")
     public String uploadNotice( HttpSession session, HttpServletRequest req){
         SimpleDateFormat formatter = new SimpleDateFormat("EEE_MMM_dd_00_00_00_zzz_yyyy");
 
@@ -34,7 +34,7 @@ public class NoticeController {
         return "admin/AdminDashBoard";
     }
 
-    @RequestMapping(value = "showNotice")
+    @RequestMapping(value = "/admin/showNotice")
     public String showNotice(Model m, HttpServletRequest req){
 
         List<Notice> list=dao.showNotice();
@@ -50,7 +50,7 @@ public class NoticeController {
     }
 
 
-    @RequestMapping(value = "deleteNotice/{id}")
+    @RequestMapping(value = "/admin/deleteNotice/{id}")
     public String deleteNotice(@PathVariable("id") String id,Model m, HttpServletRequest req){
         dao.remove( Integer.parseInt(id));
         List<Notice> list=dao.showNotice();
@@ -59,7 +59,7 @@ public class NoticeController {
     }
 
 
-    @RequestMapping(value = "showNoticeVisitedStudents/{id}")
+    @RequestMapping(value = "/admin/showNoticeVisitedStudents/{id}")
     public String showNoticeVisitedStudents(@PathVariable("id") String id,Model m, HttpServletRequest req){
         Timestamp d=dao.getNoticeUploadDate(Integer.parseInt(id));
         List<Student> list=dao.getStudentList(d);

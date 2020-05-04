@@ -60,6 +60,26 @@
                     </br>
                 </td>
             </tr>
+
+
+            <tr>
+                <td> Select Course:</td>
+                <td>
+                    <select>
+                        <c:forEach var="val" items="${Courses}">
+                            <option>${val}</option>
+                        </c:forEach>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    </br>
+                </td>
+            </tr>
+
+
         <tr>
             <td><input type="hidden"
                        name="${_csrf.parameterName}"

@@ -40,7 +40,7 @@
     <ul class="list">
         <c:forEach var="feature" items="${features}">
             <li class="listItem">
-                <a href="${contextPath}/${feature.link}" class="link">
+                <a href="${contextPath}${feature.link}" class="link">
                     <div class="box">
                         <img height="66px" width="66px" src="<c:url value="${feature.image}" />"><br>
                         <div style="height: 50px;padding: 5px;size: 21px">

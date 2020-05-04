@@ -47,11 +47,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery(
-                        "select RegNo as username,Password as password,Active as enabled from ds_mca_second_student " +
-                                "where RegNo=?")
+                        "select UserName as username,Password as password,Active as enabled from adminLogin " +
+                                "where UserName=?")
 
                 .authoritiesByUsernameQuery(
-                        "select RegNo as username,Role as role from ds_mca_second_student where RegNo=?");
+                        "select UserName as username,Role as role from adminLogin where UserName=?");
     }
 
    /* @Override
@@ -80,13 +80,44 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
+
                 .antMatcher("/admin/**")
-                .authorizeRequests().anyRequest().authenticated()
-                .and().formLogin().loginPage("/admin/login")
+
+
+                .authorizeRequests()
+
+                .anyRequest()
+                .access("hasRole('ROLE_ADMIN')")
+                //.authenticated()
+                //.hasRole("ROLE_ADMIN")
+
+                .and()
+                .formLogin()
+                .loginPage("/admin/login")
                 .defaultSuccessUrl("/admin/dashboard", true)
                 .permitAll()
+
                 .and().logout().logoutUrl("/admin/logout").logoutSuccessUrl("/admin/login");
         http.csrf().disable();
+
+/*
+
+        http.authorizeRequests()
+                .antMatchers("/hello").access("hasRole('ROLE_ADMIN')")
+                .anyRequest().permitAll()
+                .and()
+
+                .formLogin().loginPage("/login")
+                .usernameParameter("username").passwordParameter("password")
+                .and()
+                .logout().logoutSuccessUrl("/login?logout")
+                .and()
+                .exceptionHandling().accessDeniedPage("/403")
+                .and()
+                .csrf();
+*/
+
+
 
     }
 }

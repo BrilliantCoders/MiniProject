@@ -50,7 +50,7 @@
                         <td style="text-align: center">${student.rollNo}</td>
                         <td>${student.name}</td>
                         <td>${student.regNo}</td>
-                        <td><a href="${contextPath}/studentPerformanceDetail/${student.regNo}">View Performance</a></td>
+                        <td><a href="${contextPath}/admin/studentPerformanceDetail/${student.regNo}">View Performance</a></td>
                     </tr>
 
             </c:forEach>

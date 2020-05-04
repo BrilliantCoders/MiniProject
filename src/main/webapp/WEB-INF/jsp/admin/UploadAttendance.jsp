@@ -34,7 +34,7 @@
     </div>
 
     <br><br>
-    <form action="${contextPath}/saveFile"  method="post" enctype="multipart/form-data">
+    <form action="${contextPath}/admin/saveFile"  method="post" enctype="multipart/form-data">
         <input type="file" name="file"><br><br>
         <input type="submit" class="btn btn-success" value="Submit">
     </form>

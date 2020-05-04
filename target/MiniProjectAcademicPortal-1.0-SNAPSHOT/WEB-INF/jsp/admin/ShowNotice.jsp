@@ -81,13 +81,13 @@
                     </div>
                     <div class="col-lg-2 col-md-2">
                         Date - ${notice.date}<br><br>
-                        <a href="${contextPath}/deleteNotice/${notice.id}">
+                        <a href="${contextPath}/admin/deleteNotice/${notice.id}">
                             <div>
                             <img height="27px" width="27px" src="<c:url value="/resources/image/delete.png" />">
                             <span>Remove</span></div>
                         </a>
                         <br>
-                        <a href="${contextPath}/showNoticeVisitedStudents/${notice.id}">
+                        <a href="${contextPath}/admin/showNoticeVisitedStudents/${notice.id}">
                             <div>
                                 <span>Students</span></div>
                         </a>
