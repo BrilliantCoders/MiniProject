@@ -27,7 +27,7 @@ public class LoginController {
         return "admin/AdminLogin";
     }
 
-    @RequestMapping(value = "submitLogin")
+    @RequestMapping(value = "admin/submitLogin")
     public String submit(Model m, @ModelAttribute("Username") String userName,@ModelAttribute("Password") String password) {
         //3
         System.out.println("My Username is "+userName+"  Password is "+password);
@@ -63,7 +63,7 @@ public class LoginController {
 
 
 
-    @RequestMapping(value="/logout", method= RequestMethod.GET)
+    @RequestMapping(value="/admin/logout", method= RequestMethod.GET)
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){

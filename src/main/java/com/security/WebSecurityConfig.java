@@ -2,6 +2,8 @@ package com.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -26,40 +28,54 @@ import javax.sql.DataSource;
 @Order(999)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-   /* @Autowired
-    DriverManagerDataSource ds;
-*/
-   /* @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 
+    @Autowired
+    DriverManagerDataSource dataSource;
+
+    @Bean(name = "dataSource")
+    public DriverManagerDataSource dataSource() {
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+        driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        driverManagerDataSource.setUrl("jdbc:mysql://localhost:3306/portaldb");
+        driverManagerDataSource.setUsername("root");
+        driverManagerDataSource.setPassword("root");
+        return driverManagerDataSource;
+    }
+
+
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery(
-                        "select RegNo as username,Password as password from ds_mca_second_student where RegNo=?");
-    }*/
+                        "select RegNo as username,Password as password,Active as enabled from ds_mca_second_student " +
+                                "where RegNo=?")
 
+                .authoritiesByUsernameQuery(
+                        "select RegNo as username,Role as role from ds_mca_second_student where RegNo=?");
+    }
 
-    @Override
+   /* @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-       /* auth.inMemoryAuthentication()
+       *//* auth.inMemoryAuthentication()
                 .withUser("admin").password("{noop}password").roles("ADMIN");
-       */ /*auth.jdbcAuthentication().dataSource(dataSource)
+       *//* *//*auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery(
-                        "select RegNo as username,Password as password from ds_mca_second_student where RegNo=?");*/
+                        "select RegNo as username,Password as password from ds_mca_second_student where RegNo=?");*//*
 
 
 
 
 
 
-/*
+*//*
         final String findUserQuery = "select RegNo as username,Password as password from ds_mca_second_student where RegNo=?";
         final String findRoles = "select username,role " + "from Roles "
                 + "where username = ?";
 
         auth.jdbcAuthentication().dataSource(ds)
                 .usersByUsernameQuery(findUserQuery)
-                .authoritiesByUsernameQuery(findRoles);*/
-    }
+                .authoritiesByUsernameQuery(findRoles);*//*
+    }*/
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
