@@ -21,7 +21,7 @@ public class TeachingMaterialDAO {
     public void insertMaterial(String name,String desc,String fileName){
         String query="insert into ds_mca_second_teachingMaterial ( Name, Description, File) values ('"+name+"','"+desc+"','"+fileName+"'); ";
         template.update(query);
-        helper.send("New Teaching Material Added","Material - "+name);
+       // helper.send("New Teaching Material Added","Material - "+name);
     }
 
 

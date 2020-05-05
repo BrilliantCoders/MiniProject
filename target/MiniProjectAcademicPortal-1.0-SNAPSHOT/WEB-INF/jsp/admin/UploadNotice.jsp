@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Silver
-  Date: 4/11/2020
-  Time: 5:24 PM
+  User: Rajat
+  Date: 11-03-2020
+  Time: 17:03
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,7 +12,7 @@
 
 <html>
 <head>
-    <title>viewTeachingMaterial</title>
+    <title>Upload Notice</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Header.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/css-circular-prog-bar.css"/>" />
@@ -20,8 +20,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+
+
 </head>
-<body>
+<body class="body">
+
 
 
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
@@ -33,32 +36,31 @@
         <div class="col-md-2 col-lg-2" ></div>
         <div class="col-md-8 col-lg-8 backBox">
             <div class="containerHead">
-                Teaching Material
+                Upload Notice
             </div>
-            <br>
-            <table border="0" width="100%">
-                <tr>
-                    <th >Id</th>
-                    <th >Material Name</th>
-                    <th >Description</th>
-                    <th >File</th>
-                </tr>
-                <c:forEach var="emp" items="${listDet}" varStatus="status">
-                    <tr>
-                        <td>${emp.id}</td>
-                        <td>${emp.name}</td>
-                        <td>${emp.description}</td>
-                        <td>${emp.file}</td>
-                    </tr>
-                </c:forEach>
-            </table>
+            <div>
 
+                <form action="${contextPath}/uploadNotice" method="post"  >
+                    <div style="text-align: center;width: 100%;">
+                        <table cellpadding="9px" align="center">
+                            <tr>
+                                <td>Name</td>
+                                <td><input type="text" name="name"/></td>
+                            </tr>
+                            <tr>
+                                <td>Description</td>
+                                <td><textarea name="desc"></textarea></td>
+                            </tr>
 
+                        </table>
+                        <br>
+                        <input type="submit" value="Submit" class="btn btn-success">
+                    </div>
+                </form>
+
+            </div>
         </div>
         <div class="col-md-2 col-lg-2" ></div>
-
-
-
 
     </div>
 </div>
@@ -68,7 +70,6 @@
 
 
 <%@ include file="/resources/html/Footer.html" %>
-
 
 
 
