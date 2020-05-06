@@ -1,6 +1,7 @@
 package com.database;
 
 import com.model.Assignment;
+import com.model.Notice;
 import com.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -36,6 +37,11 @@ public class AssignmentDAO {
     }
 
 
+
+    public void remove(int id){
+        String query="delete from ds_mca_second_Assignment where id="+id;
+        template.update(query);
+    }
 
 
 

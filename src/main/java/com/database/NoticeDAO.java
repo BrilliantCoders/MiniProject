@@ -5,15 +5,12 @@ import com.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -32,14 +29,14 @@ public class NoticeDAO {
 
     public List<Notice> showNotice(){
 
-        String query="select * from ds_mca_second_Notice";
+        String query="select * from ds_mca_second_Notice order by id desc";
         List<Notice> list=template.query(query, new RowMapper<Notice>() {
             public Notice mapRow(ResultSet resultSet, int i) throws SQLException {
                 Notice n=new Notice();
                 n.setId(resultSet.getInt("Id"));
                 n.setName(resultSet.getString("Name"));
                 n.setDescription(resultSet.getString("Description"));
-                n.setDate(resultSet.getDate("Date"));
+                n.setDate(resultSet.getTimestamp("Date"));
                 return n;
             }
         });

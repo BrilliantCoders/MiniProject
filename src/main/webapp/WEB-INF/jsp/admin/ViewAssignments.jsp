@@ -17,76 +17,92 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-        var absentList=[];
-        $('document').ready(function(){
 
-            $('input:checkbox').prop('checked', false);
+    <style>
+        .body{
+            background: #e1e1e1;
+            display:flex;
+            flex-direction:column;
+            font-size: 16px;
+            padding: 0px;
+            height: 100%;
+            margin: 0px;
+            alignment: center;
 
-            $('input[name*="checkbox"]').change(function()
-            {
-                var id=$(this).attr("id");
-                if ($(this).is(':checked')) {
-                    absentList.push(id);
-                }
-                else{
-                    var index=absentList.indexOf(id);
-                    absentList.splice(index,1);
-                }
-                $('#tr'+id).toggleClass("absent");
-            });
+        }
 
-            $("form").submit(function() {
-                alert("submit");
-                var x=absentList.join(",");
-                $("#absent").val(x);
-                $("#absent1").val(x);
-            });
+        .container{
 
-        });
-    </script>
+            margin-left: 15%;
+            margin-right: 15%;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            margin-top: 1px;
+            margin-bottom: 13px;
+            background: #ffffff;
+            box-shadow: 0 1px 1px 0 rgba(0,0,0,0.2);
 
+        }
+
+        .containerHead{
+
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 23px;
+            background: white;
+
+
+        }
+
+    </style>
 </head>
-<body class="body">
 
+
+<body class="body">
 
 
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
 
+<div >
 
-<div class="container">
-
-
-
-    <div class="containerHead">
-        <b>Assignments</b>
+    <div class="container containerHead">
+        All Assignment
     </div>
 
 
 
-    <div style="width: 97%;alignment: center;text-align: center;horiz-align: center;margin: 10px">
-        <table>
-            <tr style="text-align: center">
-                <th>Sr. No.</th>
-                <th>Assignment Name</th>
-                <th>Start Date</th>
-                <th>Last Date</th>
-                <th>Late Submission Allowed</th>
-            </tr>
-            <c:forEach var="assgn" items="${assgnList}">
-                <tr id="tr${assgn.id}" style="text-align: center">
-                    <td >${assgn.id}</td>
-                    <td>${assgn.assgnName}</td>
-                    <td>${assgn.startDate}</td>
-                    <td>${assgn.endDate}</td>
-                    <td>${assgn.lateSub}</td>
-                </tr>
 
-            </c:forEach>
-        </table>
+    <div style="width: 100%;alignment: center;text-align: left">
+
+        <c:forEach var="assgn" items="${assgnList}">
+            <div class="row container">
+                <div class="col-lg-10 col-md-10"  id="${assgn.id}">
+                    <div style="color: #3d3395;font-size: 18px"><b>${assgn.assgnName}</b></div>
+                        Start Date - ${assgn.startDate}<br>
+                        End Date - ${assgn.endDate}<br>
+                        Late Submission - ${assgn.lateSub}<br>
+
+                </div>
+                <div class="col-lg-2 col-md-2">
+                    <a href="${contextPath}/deleteAssignment/${assgn.id}">
+                        <div>
+                            <img height="27px" width="27px" src="<c:url value="/resources/image/delete.png" />">
+                            <span>Remove</span></div>
+                    </a>
+                    <br>
+                    <a href="${contextPath}/showAssignmentVisitedStudents/${assgn.id}">
+                        <div>
+                            <span>Submissions</span></div>
+                    </a>
+                </div>
+            </div>
+
+        </c:forEach>
+
 
     </div>
-
 
 
 

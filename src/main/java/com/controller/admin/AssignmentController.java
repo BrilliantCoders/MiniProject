@@ -2,9 +2,12 @@ package com.controller.admin;
 
 import com.database.AssignmentDAO;
 import com.model.Assignment;
+import com.model.Notice;
+import com.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -16,6 +19,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -83,5 +87,19 @@ public class AssignmentController {
         m.addAttribute("assgnList",list);
         return "admin/ViewAssignments";
     }
+
+
+
+
+
+    @RequestMapping(value = "deleteAssignment/{id}")
+    public String deleteNotice(@PathVariable("id") String id, Model m, HttpServletRequest req){
+        dao.remove( Integer.parseInt(id));
+        List<Assignment> list=dao.getAssignmentList();
+        m.addAttribute("assgnList",list);
+        return "admin/ViewAssignments";
+    }
+
+
 
 }

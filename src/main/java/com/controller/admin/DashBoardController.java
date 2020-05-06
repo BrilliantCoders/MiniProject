@@ -23,7 +23,7 @@ public class DashBoardController {
         String path="/resources/image";
         list.add(new Feature("Upload\nAttendance","uploadAttendance","/resources/image/uploaddoc.ico"));
         list.add(new Feature("Mark\nAttendance","attendanceList","/resources/image/atten.png"));
-        list.add(new Feature("Performance\nRecord","studentPerformanceDetail","/resources/image/per.png"));
+        list.add(new Feature("Performance\nRecord","studentList","/resources/image/per.png"));
         list.add(new Feature("Teaching\nMaterial","addMaterial","/resources/image/teaching_material.png"));
         list.add(new Feature("Upload Lab\nRecord","uploadLabRecord","/resources/image/lab.png"));
         list.add(new Feature("Upload New Notice","addNotice","/resources/image/notify2.png"));

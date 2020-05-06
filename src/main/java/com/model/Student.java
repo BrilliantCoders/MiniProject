@@ -12,12 +12,13 @@ class Student implements Comparable<Student>{
     ArrayList<String> present,absent;
     String password;
 
+    double percent;
 
-
+    // ascending
     public int compareTo(Student s) {
-        if(rollNo>s.rollNo)
+        if(percent>s.percent)
             return 1;
-        else if(rollNo<s.rollNo)
+        else if(percent<s.percent)
             return -1;
         else
             return 0;

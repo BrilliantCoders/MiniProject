@@ -15,10 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class AttendanceController {
@@ -71,17 +68,18 @@ public class AttendanceController {
     public String showAttendance(Model m, HttpSession session, HttpServletRequest req) {
 
 
-        ArrayList<Student> list=new ArrayList<Student>();
-        ArrayList<String> headers=new ArrayList<String>();
-        /*headers=helper.getHeaderFromExcelSheet(sheet);
-        list=helper.getArrayFromExcelSheet(sheet);
-*/
+        List<Student> list=new ArrayList<Student>();
+        List<String> headers=new ArrayList<String>();
+        headers=dao.getAttendanceHeader();
+        list=dao.getAttendance();
+        Collections.sort(list);
+
         m.addAttribute("AttendanceHeader", headers);
         m.addAttribute("AttendanceList", list);
         req.getSession().setAttribute("AttendanceList",list);
         req.getSession().setAttribute("AttendanceHeader",headers);
         System.out.println(list.size()+" q"+headers.get(0));
-        return "admin/ShowAttendanceExcelPreview";
+        return "admin/ShowAllPreviousAttendance";
     }
 
 }
