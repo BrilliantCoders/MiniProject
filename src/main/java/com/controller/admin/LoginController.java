@@ -20,11 +20,12 @@ import java.util.List;
 @Controller
 public class LoginController {
 
+
     @Autowired
     AdminLoginDAO dao;
     @RequestMapping(value = "/admin/login")
     public String init(Model model) {
-        List<String> list=dao.getAllCourses();
+        List<String> list=new ArrayList<String>();//dao.getAllCourses();
         model.addAttribute("Courses",list);
         return "admin/AdminLogin";
     }

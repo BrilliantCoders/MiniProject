@@ -34,7 +34,7 @@
         <br>
         Submitted Successfully
         <br><br>
-        <form action="${contextPath}/adminDashboard">
+        <form action="${contextPath}/admin/adminDashboard">
             <input type="submit"class="btn btn-success" value="Back to HomePage">
         </form>
 
