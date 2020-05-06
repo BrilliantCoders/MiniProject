@@ -86,13 +86,13 @@
 
                 </div>
                 <div class="col-lg-2 col-md-2">
-                    <a href="${contextPath}/deleteAssignment/${assgn.id}">
+                    <a href="${contextPath}/admin/deleteAssignment/${assgn.id}">
                         <div>
                             <img height="27px" width="27px" src="<c:url value="/resources/image/delete.png" />">
                             <span>Remove</span></div>
                     </a>
                     <br>
-                    <a href="${contextPath}/showAssignmentVisitedStudents/${assgn.id}">
+                    <a href="${contextPath}/admin/showAssignmentVisitedStudents/${assgn.id}">
                         <div>
                             <span>Submissions</span></div>
                     </a>

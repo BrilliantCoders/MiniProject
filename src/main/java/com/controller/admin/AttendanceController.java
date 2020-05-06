@@ -23,7 +23,7 @@ public class AttendanceController {
     @Autowired
     AttendanceDAO dao;
 
-    @RequestMapping(value = "attendanceList")
+    @RequestMapping(value = "/admin/attendanceList")
     public String showStudentList(Model m){
 
 
@@ -35,13 +35,13 @@ public class AttendanceController {
     }
 
 
-    @RequestMapping(value = "uploadAttendance")
+    @RequestMapping(value = "/admin/uploadAttendance")
     public String uploadAttendance(Model m){
 
         return "admin/UploadAttendance";
     }
 
-    @RequestMapping(value = "submitAttendance")
+    @RequestMapping(value = "/admin/submitAttendance")
     public String submitAttendance(Model m, @RequestParam ("absent") String absent){
         SimpleDateFormat formatter = new SimpleDateFormat("EEE_MMM_dd_00_00_00_zzz_yyyy");
         Date date = new Date();
@@ -52,7 +52,7 @@ public class AttendanceController {
     }
 
 
-    @RequestMapping(value = "submitAttendanceViaFile")
+    @RequestMapping(value = "/admin/submitAttendanceViaFile")
     public String submitAttendanceViaFile(Model m, HttpServletRequest request){
         ArrayList<Student> list= (ArrayList<Student>) request.getSession().getAttribute("AttendanceList");
         ArrayList<String> header=(ArrayList<String>) request.getSession().getAttribute("AttendanceHeader");
@@ -64,7 +64,7 @@ public class AttendanceController {
     }
 
 
-    @RequestMapping(value = "showAttendance")
+    @RequestMapping(value = "/admin/showAttendance")
     public String showAttendance(Model m, HttpSession session, HttpServletRequest req) {
 
 

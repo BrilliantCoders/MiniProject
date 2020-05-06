@@ -40,7 +40,7 @@
             </div>
             <div>
 
-                <form action="${contextPath}/uploadMaterial" method="post"  enctype="multipart/form-data">
+                <form action="${contextPath}/admin/uploadMaterial" method="post"  enctype="multipart/form-data">
                     <div style="text-align: center;width: 100%;">
                         <table cellpadding="9px" align="center">
                             <tr>

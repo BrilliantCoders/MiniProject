@@ -30,7 +30,7 @@
 
    <br>
     <div>
-        <form action="${contextPath}/submitAttendanceViaFile">
+        <form action="${contextPath}/admin/submitAttendanceViaFile">
             <input type="submit" class="btn btn-success" value="Submit Attendance">
         </form>
     </div>
@@ -72,7 +72,7 @@
 
 </div>
     <div>
-        <form action="${contextPath}/submitAttendanceViaFile">
+        <form action="${contextPath}/admin/submitAttendanceViaFile">
             <input type="submit" class="btn btn-success" value="Submit Attendance">
         </form>
     </div>

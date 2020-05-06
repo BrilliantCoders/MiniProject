@@ -29,14 +29,14 @@ public class LabRecordController {
     @Autowired
     LabRecordDAO dao;
 
-    @RequestMapping(value = "uploadLabRecord")
+    @RequestMapping(value = "/admin/uploadLabRecord")
     public String uploadAttendance(Model m){
 
         return "admin/UploadLabRecordViaFile";
     }
 
 
-    @RequestMapping(value = "uploadLabRecordViaFile")
+    @RequestMapping(value = "/admin/uploadLabRecordViaFile")
     public String uploadLabRecordViaFile(Model m, @RequestParam("file") CommonsMultipartFile file, HttpSession session, HttpServletRequest req) {
         ArrayList<LabMarks> list=new ArrayList<LabMarks>();
         ArrayList<String> headers=new ArrayList<String>();
@@ -57,7 +57,7 @@ public class LabRecordController {
     }
 
 
-    @RequestMapping(value = "submitLabRecordViaFile")
+    @RequestMapping(value = "/admin/submitLabRecordViaFile")
     public String submitAttendanceViaFile(Model m, HttpServletRequest request){
         ArrayList<LabMarks> list= (ArrayList<LabMarks>) request.getSession().getAttribute("LabMarksList");
         ArrayList<String> header=(ArrayList<String>) request.getSession().getAttribute("LabMarksHeader");

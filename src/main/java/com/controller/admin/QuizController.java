@@ -32,7 +32,7 @@ public class QuizController {
     @Autowired
     QuizDAO dao;
 
-    @RequestMapping(value = "uploadQuiz")
+    @RequestMapping(value = "/admin/uploadQuiz")
     public String uploadQuiz(Model m){
         Quiz quiz=new Quiz();
         m.addAttribute("quiz",quiz);
@@ -42,7 +42,7 @@ public class QuizController {
 
 
 
-    @RequestMapping(value = "previewQuiz")
+    @RequestMapping(value = "/admin/previewQuiz")
     public String upload(Model m, @RequestParam("file") CommonsMultipartFile file, Quiz quiz, HttpServletRequest req) {
 
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
@@ -88,7 +88,7 @@ public class QuizController {
     }
 
 
-    @RequestMapping(value = "submitQuiz")
+    @RequestMapping(value = "/admin/submitQuiz")
     public String submitQuiz(Model m, HttpServletRequest req){
         Quiz quiz= (Quiz) req.getSession().getAttribute("quiz");
         List<Question> questions= (List<Question>) req.getSession().getAttribute("questionList");

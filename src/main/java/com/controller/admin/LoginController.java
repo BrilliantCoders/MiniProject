@@ -3,33 +3,41 @@ package com.controller.admin;
 import com.database.AdminLoginDAO;
 import com.model.Feature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class LoginController {
 
     @Autowired
     AdminLoginDAO dao;
-    @RequestMapping(value = "adminLogin")
+    @RequestMapping(value = "/admin/login")
     public String init(Model model) {
-        //1
+        List<String> list=dao.getAllCourses();
+        model.addAttribute("Courses",list);
         return "admin/AdminLogin";
     }
 
-    @RequestMapping(value = "submitLogin")
+    @RequestMapping(value = "/admin/subLogin")
     public String submit(Model m, @ModelAttribute("Username") String userName,@ModelAttribute("Password") String password) {
-        //3
+        /*
         System.out.println("My Username is "+userName+"  Password is "+password);
 
         boolean isLogin = dao.authenticate(userName,password);
 
         if(isLogin==true) {
-
+       */
             ArrayList<Feature> list=new ArrayList<Feature>();
             String path="/resources/image";
             list.add(new Feature("Mark\nAttendance","attendanceList","/resources/image/atten.png"));
@@ -49,8 +57,20 @@ public class LoginController {
 
 
             return "admin/AdminDashBoard";
-        }
+  /*      }
         else
             return "admin/AdminLogin";
+  */  }
+
+
+
+
+    @RequestMapping(value="/admin/logout", method= RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return "admin/UploadQuiz";
     }
 }

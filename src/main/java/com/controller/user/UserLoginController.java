@@ -15,18 +15,18 @@ public class UserLoginController {
 
     @Autowired
     UserLoginDAO dao;
-    @RequestMapping(value = "userLogin")
+    @RequestMapping(value = "/user/login")
     public String init(Model model)
     {
         return "user/UserLogin";
     }
 
-    @RequestMapping (value="submitUserLogin")
+    @RequestMapping (value="/user/dashboard")
     public String submit(Model m, @ModelAttribute("StudentID") String userID,@ModelAttribute("StudentPassword") String userPassword){
-        boolean isLogin = dao.authenticate(userID,userPassword);
+        /*boolean isLogin = dao.authenticate(userID,userPassword);
         if(isLogin==true) {
 
-            ArrayList<Feature> list=new ArrayList<Feature>();
+        */    ArrayList<Feature> list=new ArrayList<Feature>();
             String path="/resources/image";
             list.add(new Feature("Mark\nAttendance","attendanceList","/resources/image/atten.png"));
             list.add(new Feature("Performance\nRecord","/attendance","/resources/image/per.png"));
@@ -45,10 +45,10 @@ public class UserLoginController {
 
 
             return "admin/AdminDashBoard";
-        }
+        /*}
 
         else
-            return "user/UserLogin";
+            return "user/UserLogin";*/
     }
 }
 

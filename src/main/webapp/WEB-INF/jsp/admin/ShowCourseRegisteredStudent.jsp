@@ -49,7 +49,7 @@
     </div>
 
     <div>
-        <form action="${contextPath}/addCourseStudent">
+        <form action="${contextPath}/admin/addCourseStudent">
             <input type="submit" value="Submit">
         </form>
     </div>

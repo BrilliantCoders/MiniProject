@@ -59,7 +59,7 @@
     </div>
     <br>
     <div>
-        <form action="${contextPath}/submitQuiz">
+        <form action="${contextPath}/admin/submitQuiz">
             <input type="submit" class="btn btn-success" value="Submit Quiz">
         </form>
     </div>
@@ -98,7 +98,7 @@
 
     </div>
     <div>
-        <form action="${contextPath}/submitQuiz">
+        <form action="${contextPath}/admin/submitQuiz">
             <input type="submit" class="btn btn-success" value="Submit Quiz">
         </form>
     </div>

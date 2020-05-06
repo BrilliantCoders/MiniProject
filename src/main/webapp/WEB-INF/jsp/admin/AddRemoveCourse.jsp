@@ -29,7 +29,7 @@
     </div>
 
     <div style="width: 100%;alignment: center;text-align: center">
-        <form:form action="${contextPath}/uploadCourse" modelAttribute="course"  method="post" enctype="multipart/form-data">
+        <form:form action="${contextPath}/admin/uploadCourse" modelAttribute="course"  method="post" enctype="multipart/form-data">
             <table cellpadding="12px" cellspacing="3px" align="center" style="color: black">
                 <tr>
                     <td>Course Name </td>

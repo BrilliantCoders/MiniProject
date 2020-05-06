@@ -20,12 +20,12 @@ public class TeachingMaterialController {
     @Autowired
     TeachingMaterialDAO dao;
 
-    @RequestMapping(value = "addMaterial")
+    @RequestMapping(value = "/admin/addMaterial")
     public String addMaterial(){
         return "admin/UploadTeachingMaterial";
     }
 
-    @RequestMapping(value = "uploadMaterial")
+    @RequestMapping(value = "/admin/uploadMaterial")
     public String uploadMaterial(@RequestParam("file") CommonsMultipartFile file, HttpSession session, HttpServletRequest req){
         fileUploadHelper.uploadFile(file,session);
         String filename = file.getOriginalFilename();
