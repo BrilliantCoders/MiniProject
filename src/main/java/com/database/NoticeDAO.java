@@ -1,5 +1,6 @@
 package com.database;
 
+import com.helper.GlobalVariables;
 import com.model.Notice;
 import com.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +20,19 @@ public class NoticeDAO {
     @Autowired
     JdbcTemplate template;
 
+    String course= GlobalVariables.course;
+
     public void insertNotice(String name,String desc){
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Timestamp sdate = new Timestamp(new Date().getTime());
-        String query="insert into ds_mca_second_Notice ( Name, Description,Date) values ('"+name+"','"+desc+"','"+
+        String query="insert into "+course+"_Notice ( Name, Description,Date) values ('"+name+"','"+desc+"','"+
                 formatter.format(sdate)+"'); ";
         template.update(query);
     }
 
     public List<Notice> showNotice(){
 
-        String query="select * from ds_mca_second_Notice order by id desc";
+        String query="select * from "+course+"_Notice order by id desc";
         List<Notice> list=template.query(query, new RowMapper<Notice>() {
             public Notice mapRow(ResultSet resultSet, int i) throws SQLException {
                 Notice n=new Notice();
@@ -44,13 +47,13 @@ public class NoticeDAO {
     }
 
     public void remove(int id){
-        String query="delete from ds_mca_second_Notice where id="+id;
+        String query="delete from "+course+"_Notice where id="+id;
         template.update(query);
     }
 
 
     public Timestamp getNoticeUploadDate(int id){
-        String query="select Date from ds_mca_second_Notice where id="+id;
+        String query="select Date from "+course+"_Notice where id="+id;
         Timestamp d=template.queryForObject(query, new RowMapper<Timestamp>() {
             public Timestamp mapRow(ResultSet resultSet, int i) throws SQLException {
                 Timestamp d=resultSet.getTimestamp("Date");

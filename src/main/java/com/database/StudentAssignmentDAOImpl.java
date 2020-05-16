@@ -1,5 +1,6 @@
 package com.database;
 
+import com.helper.GlobalVariables;
 import com.model.Assignment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,10 +18,11 @@ public class StudentAssignmentDAOImpl {
     @Autowired
     JdbcTemplate template;
 
+    String course= GlobalVariables.course;
 
 
     public List<Assignment> getAssignList() {
-        List<Assignment> list = template.query("select * from ds_mca_second_assignment;", new RowMapper<Assignment>(){
+        List<Assignment> list = template.query("select * from "+course+"_assignment;", new RowMapper<Assignment>(){
 
 
             public Assignment mapRow(ResultSet resultSet, int rowNum) throws SQLException {
@@ -46,7 +48,7 @@ public class StudentAssignmentDAOImpl {
 
         System.out.println(edate.toString());
 
-        String query="insert into ds_mca_second_assignment (AssgnName, StartDate, EndDate, LateSub, AssgnLink) values (" +
+        String query="insert into "+course+"_assignment (AssgnName, StartDate, EndDate, LateSub, AssgnLink) values (" +
                 "  '"+stud.getAssgnName()+"','"+formatter.format(sdate)+"','"+formatter.format(edate)+"'" +
                 ",'"+stud.getLateSub()+"','"+stud.getAssgnLink()+"');";
 

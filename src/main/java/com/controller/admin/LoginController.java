@@ -23,9 +23,60 @@ public class LoginController {
 
     @Autowired
     AdminLoginDAO dao;
-    @RequestMapping(value = "/admin/login")
-    public String init(Model model) {
-        List<String> list=new ArrayList<String>();//dao.getAllCourses();
+
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Model m,HttpServletRequest request) {
+
+        if(request.getSession().getAttribute("type")==null){
+            return "admin/test";
+        }
+
+        String type=(String)request.getSession().getAttribute("type");
+        System.out.println("Mytype "+type);
+        if(type.equals("admin")){
+            ArrayList<Feature> list=new ArrayList<Feature>();
+            String path="/resources/image";
+            list.add(new Feature("Upload\nAttendance","admin/uploadAttendance","/resources/image/uploaddoc.ico"));
+            list.add(new Feature("Mark\nAttendance","admin/attendanceList","/resources/image/atten.png"));
+            list.add(new Feature("Performance\nRecord","admin/studentList","/resources/image/per.png"));
+            list.add(new Feature("Teaching\nMaterial","admin/addMaterial","/resources/image/teaching_material.png"));
+            list.add(new Feature("Upload Lab\nRecord","admin/uploadLabRecord","/resources/image/lab.png"));
+            list.add(new Feature("Upload New Notice","admin/addNotice","/resources/image/notify2.png"));
+            list.add(new Feature("Add\nCourse","admin/addRemoveCourse","/resources/image/assgn.png"));
+            list.add(new Feature("Show\nCourse","admin/showCourses","/resources/image/assgn.png"));
+            list.add(new Feature("View\nAssignments","admin/viewAssignment","/resources/image/assgn2.png"));
+            list.add(new Feature("Upload\nAssignment","admin/assignment","/resources/image/upload.png"));
+
+            list.add(new Feature("Upload\nQuiz","admin/uploadQuiz","/resources/image/chgpass.png"));
+
+            list.add(new Feature("Logout\nWebsite","/attendance","/resources/image/logout.png"));
+
+
+            m.addAttribute("features",list);
+
+
+            return "admin/AdminDashBoard";
+        }
+        else if(type.equals("user")){
+            return "user/AttendanceSuccess";
+        }
+
+        return "admin/test";
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String adlogin(Model model,HttpServletRequest request) {
+        List<String> list=dao.getAllCourses();
+        //model.addAttribute("Courses",list);
+        return "admin/test";
+    }
+
+    @RequestMapping(value = "/admin/login", method = RequestMethod.GET)
+    public String init(Model model,HttpServletRequest request) {
+        List<String> list=dao.getAllCourses();
+
+
         model.addAttribute("Courses",list);
         return "admin/AdminLogin";
     }

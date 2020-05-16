@@ -26,7 +26,7 @@
     </br>
     </br>
 
-    <form action="${contextPath}/user/login" align="center" method="post">
+    <form action="${contextPath}/user/loginTest" align="center" method="post">
         <c:if test="${param.error != null}">
             <p>
                 Invalid username and password.

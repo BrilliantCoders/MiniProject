@@ -1,5 +1,6 @@
 package com.database;
 
+import com.helper.GlobalVariables;
 import com.model.Question;
 import com.model.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class QuizDAO {
     @Autowired
     JdbcTemplate template;
 
+    String course= GlobalVariables.course;
     public void uploadQuiz(Quiz quiz,List<Question> questions){
         Timestamp sdate = new Timestamp(quiz.getStartDateTime().getTime());
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -27,7 +29,7 @@ public class QuizDAO {
 
         String query="insert into quizzes ( QuizName, StartDateTime, EndDateTime, Duration, Course) values (" +
                 "  '"+quiz.getQuizName()+"','"+formatter.format(sdate)+"','"+formatter.format(edate)+"'" +
-                ","+quiz.getDuration()+",'ds_mca_second');";
+                ","+quiz.getDuration()+",'"+course+"');";
 
         template.update(query);
         query="select max(id) as Id from quizzes";
@@ -42,7 +44,7 @@ public class QuizDAO {
 
     public void uploadQuestions(final List<Question> questions, int QuizId){
 
-        String query="CREATE TABLE ds_mca_second_quiz_"+QuizId+" (\n" +
+        String query="CREATE TABLE "+course+"_quiz_"+QuizId+" (\n" +
                 "  `Id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,\n" +
                 "  `Question` LONGTEXT NOT NULL,\n" +
                 "  `Option1` TEXT NOT NULL,\n" +
@@ -55,7 +57,7 @@ public class QuizDAO {
                 ")";
 
         template.update(query);
-        query="insert into ds_mca_second_quiz_"+QuizId+" (Question,Option1,Option2,Option3,Option4,Answer,Explanation) values (?,?,?,?,?,?,?)";
+        query="insert into "+course+"_quiz_"+QuizId+" (Question,Option1,Option2,Option3,Option4,Answer,Explanation) values (?,?,?,?,?,?,?)";
 
         template.batchUpdate(query, new BatchPreparedStatementSetter() {
             public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {

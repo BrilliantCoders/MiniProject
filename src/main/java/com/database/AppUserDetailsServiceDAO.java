@@ -2,6 +2,7 @@ package com.database;
 import java.util.Collection;
 import java.util.List;
 
+import com.helper.GlobalVariables;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,6 +15,7 @@ public class AppUserDetailsServiceDAO implements UserDetailsService {
 
 
     protected final Log logger = LogFactory.getLog(getClass());
+    String course= GlobalVariables.course;
 
 
     public UserDetails loadUserByUsername(final String username)

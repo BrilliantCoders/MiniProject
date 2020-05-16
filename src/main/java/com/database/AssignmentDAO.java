@@ -1,5 +1,6 @@
 package com.database;
 
+import com.helper.GlobalVariables;
 import com.model.Assignment;
 import com.model.Notice;
 import com.model.Student;
@@ -19,6 +20,8 @@ public class AssignmentDAO {
     @Autowired
     JdbcTemplate template;
 
+    String course= GlobalVariables.course;
+
     public void upload(Assignment asgn){
 
         Timestamp edate = new Timestamp(asgn.getEndDate().getTime());
@@ -28,7 +31,7 @@ public class AssignmentDAO {
 
         System.out.println(edate.toString());
 
-        String query="insert into ds_mca_second_assignment (AssgnName, StartDate, EndDate, LateSub, AssgnLink) values (" +
+        String query="insert into "+course+"_assignment (AssgnName, StartDate, EndDate, LateSub, AssgnLink) values (" +
                 "  '"+asgn.getAssgnName()+"','"+formatter.format(sdate)+"','"+formatter.format(edate)+"'" +
                 ",'"+asgn.getLateSub()+"','"+asgn.getAssgnLink()+"');";
 
@@ -39,7 +42,7 @@ public class AssignmentDAO {
 
 
     public void remove(int id){
-        String query="delete from ds_mca_second_Assignment where id="+id;
+        String query="delete from "+course+"_Assignment where id="+id;
         template.update(query);
     }
 
@@ -53,7 +56,7 @@ public class AssignmentDAO {
             return list;
 
         list=new ArrayList<Assignment>();
-        String query="select * from ds_mca_second_assignment;";
+        String query="select * from "+course+"_assignment;";
         list=  template.query(query, new RowMapper<Assignment>() {
             public Assignment mapRow(ResultSet resultSet, int i) throws SQLException {
                 Assignment ob=new Assignment();

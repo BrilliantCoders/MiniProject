@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/DashBoard.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Header.css"/>" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <title>Login</title>
@@ -26,7 +26,7 @@
     </br>
     </br>
 
-    <form action="${contextPath}/admin/login" align="center" method="post">
+    <form action="${contextPath}/admin/loginTest" align="center" method="post">
         <c:if test="${param.error != null}">
         <p>
             Invalid username and password.
@@ -60,6 +60,26 @@
                     </br>
                 </td>
             </tr>
+
+
+            <tr>
+                <td> Select Course:</td>
+                <td>
+                    <select name="course">
+                        <c:forEach var="val" items="${Courses}">
+                            <option>${val}</option>
+                        </c:forEach>
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    </br>
+                </td>
+            </tr>
+
+
         <tr>
             <td><input type="hidden"
                        name="${_csrf.parameterName}"
@@ -68,6 +88,7 @@
         </tr>
         </table>
     </form>
+    <c:set var="course" value="valueHere" scope="session"  />
 </br>
 </br>
 </div>

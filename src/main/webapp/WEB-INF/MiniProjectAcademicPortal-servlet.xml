@@ -16,7 +16,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
     <bean id="ds" name="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://localhost:3306/db"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/portaldb"></property>
         <property name="username" value="root"></property>
         <property name="password" value="root"></property>
     </bean>
@@ -54,6 +54,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="labRecoredHelper" class="com.helper.LabRecordHelper"/>
 
     <bean id="labRecordDao" class="com.database.LabRecordDAO"/>
+
 
 
     <bean id="multipartResolver"

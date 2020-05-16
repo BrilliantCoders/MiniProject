@@ -1,5 +1,6 @@
 package com.database;
 
+import com.helper.GlobalVariables;
 import com.model.Question;
 import com.model.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,12 @@ public class UserQuizDAO {
     @Autowired
     JdbcTemplate template;
 
+    String course= GlobalVariables.course;
+
     public List<Question> getQuestionList(int quizId){
         List<Question> list=new ArrayList<Question>();
 
-        String query="select Id, Question, Option1, Option2, Option3, Option4, Answer, Explanation from ds_mca_second_quiz_"+quizId+";";
+        String query="select Id, Question, Option1, Option2, Option3, Option4, Answer, Explanation from "+course+"_quiz_"+quizId+";";
         list=template.query(query, new RowMapper<Question>() {
             public Question mapRow(ResultSet resultSet, int i) throws SQLException {
                 Question ob=new Question();
@@ -42,7 +45,7 @@ public class UserQuizDAO {
 
     public List<Quiz> getQuizList(){
         List<Quiz> list=new ArrayList<Quiz>();
-        String query="select * from quizzes where Course='ds_mca_second'";
+        String query="select * from quizzes where Course='"+course+"'";
         final Date d=new Date();
         list=template.query(query, new RowMapper<Quiz>() {
             public Quiz mapRow(ResultSet resultSet, int i) throws SQLException {

@@ -1,5 +1,6 @@
 package com.database;
 
+import com.helper.GlobalVariables;
 import com.model.TeachingMaterial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,10 +14,11 @@ public class ViewTeachingMaterialDAO {
     @Autowired
     JdbcTemplate template;
 
+    String course= GlobalVariables.course;
 
 
     public List<TeachingMaterial> getMaterialList() {
-        List<TeachingMaterial> list = template.query("select * from ds_mca_second_teachingmaterial;", new RowMapper<TeachingMaterial>(){
+        List<TeachingMaterial> list = template.query("select * from "+course+"_teachingmaterial;", new RowMapper<TeachingMaterial>(){
 
 
             public TeachingMaterial mapRow(ResultSet resultSet, int rowNum) throws SQLException {

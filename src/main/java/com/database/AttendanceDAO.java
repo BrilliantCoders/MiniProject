@@ -1,5 +1,6 @@
 package com.database;
 
+import com.helper.GlobalVariables;
 import com.model.Student;
 import com.mysql.jdbc.DatabaseMetaData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,16 @@ public class AttendanceDAO {
     @Autowired
     JdbcTemplate template;
     List<Student> list=null;
+    String course= GlobalVariables.course;
     public List<Student> getStudentList(){
 
         if(list!=null)
             return list;
 
+        course= GlobalVariables.course;
+
         list=new ArrayList<Student>();
-        String query="select * from ds_mca_second_student;";
+        String query="select * from "+course+"_student;";
         list=  template.query(query, new RowMapper<Student>() {
             public Student mapRow(ResultSet resultSet, int i) throws SQLException {
                 Student ob=new Student();
@@ -43,7 +47,7 @@ public class AttendanceDAO {
 
     public void createDateColumn(String date){
         // check if column exist or not
-        String query="select count("+date+") as dateCount from ds_mca_second_attendance";
+        String query="select count("+date+") as dateCount from "+course+"_attendance";
         Integer exist=0;
 
         try {
@@ -62,7 +66,7 @@ public class AttendanceDAO {
         }
 
         if(exist==0){
-            query="Alter table ds_mca_second_attendance add column "+date+" VARCHAR(45) NOT NULL DEFAULT 'P'";
+            query="Alter table "+course+"attendance add column "+date+" VARCHAR(45) NOT NULL DEFAULT 'P'";
             template.update(query);
         }
 
@@ -85,18 +89,18 @@ public class AttendanceDAO {
 
 
         try {
-            String query="Alter table ds_mca_second_attendance drop column "+date+";";
+            String query="Alter table "+course+"_attendance drop column "+date+";";
             template.update(query);
         }
         catch (Exception e){
 
         }
 
-        String query="Alter table ds_mca_second_attendance add column "+date+" VARCHAR(55) NOT NULL DEFAULT 'P'";
+        String query="Alter table "+course+"_attendance add column "+date+" VARCHAR(55) NOT NULL DEFAULT 'P'";
         template.update(query);
 
 
-        query="update ds_mca_second_attendance set "+date+"='A' where RegNo in ("+ab+");";
+        query="update "+course+"_attendance set "+date+"='A' where RegNo in ("+ab+");";
         int y=template.update(query);
     }
 
@@ -112,7 +116,7 @@ public class AttendanceDAO {
 
         String query;
         for (Student st:students){
-            query="update ds_mca_second_attendance set ";
+            query="update "+course+"_attendance set ";
             int i=0;
             for(String attendance:st.getPresent()){
                 query=query+headers.get(i+2)+"='"+attendance+"' ,";
@@ -135,7 +139,7 @@ public class AttendanceDAO {
     public List<String> getAttendanceHeader(){
 
 
-        String query="SHOW columns FROM ds_mca_second_attendance";
+        String query="SHOW columns FROM "+course+"_attendance";
         List<String> list=template.query(query, new RowMapper<String>() {
             public String mapRow(ResultSet resultSet, int i) throws SQLException {
                 return resultSet.getString("Field");
@@ -150,7 +154,7 @@ public class AttendanceDAO {
     public List<Student> getAttendance(){
 
 
-        String query="select * FROM ds_mca_second_attendance order by RollNo asc";
+        String query="select * FROM "+course+"_attendance order by RollNo asc";
         List<Student> list=template.query(query, new RowMapper<Student>() {
             public Student mapRow(ResultSet resultSet, int i) throws SQLException {
                 Student s=new Student();

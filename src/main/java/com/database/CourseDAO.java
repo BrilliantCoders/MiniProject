@@ -50,18 +50,20 @@ public class CourseDAO {
                 "  Password VARCHAR(45) NOT NULL," +
                 "  LastVisit DATETIME NULL," +
                 "  LastVisitNotice DATETIME NULL," +
-                "  LastVisitMaterial DATETIME NULL" +
+                "  LastVisitMaterial DATETIME NULL," +
                 "  PRIMARY KEY (`RegNo`)" +
                 ")";
 
         template.update(query);
 
         for (Student st:students){
-            query="insert into "+tableName+"_student values( '"+st.getRegNo()+"' , "+st.getRollNo()+" , '"+st.getName()+"'" +
+            query="insert into "+tableName+"_student (RegNo, RollNo, Name, Email, Password)" +
+                    " values( '"+st.getRegNo()+"' , "+st.getRollNo()+" , '"+st.getName()+"'" +
                     " ,'"+st.getEmail()+"' ,'"+st.getPassword()+"');";
             template.update(query);
 
-            query="insert into "+tableName+"_attendance values( '"+st.getRegNo()+"' , "+st.getRollNo()+" );";
+            query="insert into "+tableName+"_attendance " +
+                    "values( '"+st.getRegNo()+"' , "+st.getRollNo()+" );";
             template.update(query);
         }
 
@@ -119,7 +121,17 @@ public class CourseDAO {
     public void addCourseStudent(ArrayList<Student> students, Course c){
 
         String query;
-        String tableName=String.valueOf(c.getSubName()+"_"+c.getCourseName()+"_"+c.getBranchName()+"_"+c.getSemester()+"_"+c.getYear());
+        String type="";
+
+        if(c.getType()==0){
+            type="Class";
+        }
+        else {
+            type="Lab";
+        }
+
+        String tableName=String.valueOf(c.getSubName()+"_"+c.getCourseName()+"_"+c.getBranchName()+"_"+c.getSemester()+"_"+c.getYear()+
+                "_"+type);
         tableName=tableName.replaceAll(" ","");
 
         initAttendance(tableName);

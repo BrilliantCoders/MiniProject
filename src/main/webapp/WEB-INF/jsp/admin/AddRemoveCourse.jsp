@@ -56,7 +56,7 @@
                         <form:select path="type">
                             <form:option value="0">Class</form:option>
                             <form:option value="1">Lab</form:option>
-                            <form:option value="2">Class and Lab both</form:option>
+                            <%--<form:option value="2">Class and Lab both</form:option>--%>
                         </form:select>
                     </td>
 
@@ -66,7 +66,7 @@
                     <td><form:input path="year"/></td>
                 </tr>
                 <tr>
-                    <td>Upload File</td>
+                    <td>Upload Student List</td>
                     <td><input type="file" name="file"></td>
                 </tr>
 

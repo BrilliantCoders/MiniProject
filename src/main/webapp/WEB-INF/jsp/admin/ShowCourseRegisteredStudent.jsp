@@ -50,7 +50,7 @@
 
     <div>
         <form action="${contextPath}/admin/addCourseStudent">
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" class="btn btn-success">
         </form>
     </div>
 

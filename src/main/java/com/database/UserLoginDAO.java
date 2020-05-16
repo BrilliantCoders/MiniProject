@@ -1,5 +1,6 @@
 package com.database;
 
+import com.helper.GlobalVariables;
 import com.model.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,6 +12,8 @@ import java.sql.SQLException;
 public class UserLoginDAO {
     @Autowired
     JdbcTemplate template;
+
+    String course= GlobalVariables.course;
 
     public boolean authenticate(String userID,String userPassword) {
         String query="select * from user_Login  where UserName='"+userID+"' and Password='"+userPassword+"'; ";
