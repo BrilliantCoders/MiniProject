@@ -14,13 +14,9 @@ public class ViewTeachingMaterialDAO {
     @Autowired
     JdbcTemplate template;
 
-    String course= GlobalVariables.course;
-
-
+    
     public List<TeachingMaterial> getMaterialList() {
-        List<TeachingMaterial> list = template.query("select * from "+course+"_teachingmaterial;", new RowMapper<TeachingMaterial>(){
-
-
+        List<TeachingMaterial> list = template.query("select * from "+GlobalVariables.getCourse()+"_teachingmaterial;", new RowMapper<TeachingMaterial>(){
             public TeachingMaterial mapRow(ResultSet resultSet, int rowNum) throws SQLException {
                 TeachingMaterial ob=new TeachingMaterial();
                 ob.setId(resultSet.getInt("Id"));
@@ -30,6 +26,7 @@ public class ViewTeachingMaterialDAO {
                 return ob;
             }
         });
+        System.out.println(list.size());
         return list;
     }
 }

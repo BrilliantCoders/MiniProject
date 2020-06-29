@@ -55,9 +55,21 @@
                 <td> Password:</td>
                 <td><input type="password" name="password"/> </td>
             </tr>
+
             <tr>
                 <td>
                     </br>
+                </td>
+            </tr>
+            <tr>
+                <td> Select Course:</td>
+                <td>
+                    <select name="course">
+                        <c:forEach var="val" items="${Courses}">
+                            <option>${val}</option>
+                        </c:forEach>
+
+                    </select>
                 </td>
             </tr>
             <tr>

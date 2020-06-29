@@ -69,32 +69,36 @@
     </div>
 
 
+    <div style="width: 100%">
 
 
-    <div style="width: 100%;alignment: center;text-align: left">
 
             <c:forEach var="notice" items="${Notices}">
-                <div class="row container">
+                <div class="container">
+                <div class="row" >
                     <div class="col-lg-10 col-md-10"  id="${notice.id}">
                         <div style="color: #3d3395;font-size: 18px"><b>${notice.name}</b></div>
                         ${notice.description}<br>
                     </div>
                     <div class="col-lg-2 col-md-2">
-                        Date - ${notice.date}<br><br>
+                        Date - ${notice.date}<br>
                         <a href="${contextPath}/admin/deleteNotice/${notice.id}">
                             <div>
                             <img height="27px" width="27px" src="<c:url value="/resources/image/delete.png" />">
                             <span>Remove</span></div>
                         </a>
-                        <br>
+
                         <a href="${contextPath}/admin/showNoticeVisitedStudents/${notice.id}">
                             <div>
-                                <span>Students</span></div>
+                                <span>View Students</span></div>
                         </a>
                     </div>
                 </div>
+                </div>
 
             </c:forEach>
+
+
 
 
     </div>

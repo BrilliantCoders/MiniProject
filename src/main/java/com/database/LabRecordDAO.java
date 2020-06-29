@@ -15,20 +15,20 @@ public class LabRecordDAO {
 
     @Autowired
     JdbcTemplate template;
-    String course= GlobalVariables.course;
+    
 
 
     public void createDateColumn(String date){
         System.out.println("date "+date);
         try {
-            String query="Alter table "+course+"_labrecord drop column "+date+";";
+            String query="Alter table "+GlobalVariables.getCourse()+"_labrecord drop column "+date+";";
             template.update(query);
         }
         catch (Exception e){
 
         }
 
-        String query="Alter table "+course+"_labrecord add column "+date+" DOUBLE NOT NULL DEFAULT 0.0";
+        String query="Alter table "+GlobalVariables.getCourse()+"_labrecord add column "+date+" DOUBLE NOT NULL DEFAULT 0.0";
         template.update(query);
 
     }
@@ -47,7 +47,7 @@ public class LabRecordDAO {
 
         String query;
         for (LabMarks marks:list){
-            query="update "+course+"_labrecord set ";
+            query="update "+GlobalVariables.getCourse()+"_labrecord set ";
             int i=0;
             for(Double mark:marks.getExecutionMarks()){
                 query=query+headers.get(i+2)+"="+mark+" ,";

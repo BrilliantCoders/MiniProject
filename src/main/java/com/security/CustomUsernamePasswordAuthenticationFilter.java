@@ -24,7 +24,7 @@ public class CustomUsernamePasswordAuthenticationFilter extends UsernamePassword
         final String languageParam = request.getParameter("course");
         request.getSession().setAttribute("course", languageParam);
         request.getSession().setAttribute("type", "admin");
-        GlobalVariables.course=languageParam;
+        GlobalVariables.setCourse(languageParam);
         System.out.println("Filter" + languageParam);
         // You can do your stuff here
 

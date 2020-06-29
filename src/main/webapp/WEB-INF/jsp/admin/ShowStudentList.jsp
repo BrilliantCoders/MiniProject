@@ -37,7 +37,6 @@
             });
 
             $("form").submit(function() {
-                alert("submit");
                 var x=absentList.join(",");
                 $("#absent").val(x);
                 $("#absent1").val(x);

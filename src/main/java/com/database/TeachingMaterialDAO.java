@@ -19,10 +19,9 @@ public class TeachingMaterialDAO {
     @Autowired
     MailHelper helper;
 
-    String course= GlobalVariables.course;
-
+   
     public void insertMaterial(String name,String desc,String fileName){
-        String query="insert into "+course+"_teachingMaterial ( Name, Description, File) values ('"+name+"','"+desc+"','"+fileName+"'); ";
+        String query="insert into "+GlobalVariables.getCourse()+"_teachingMaterial ( Name, Description, File) values ('"+name+"','"+desc+"','"+fileName+"'); ";
         template.update(query);
        // helper.send("New Teaching Material Added","Material - "+name);
     }
@@ -30,7 +29,7 @@ public class TeachingMaterialDAO {
 
     public List<Notice> showNotice(){
 
-        String query="select * from "+course+"_teachingmaterial";
+        String query="select * from "+GlobalVariables.getCourse()+"_teachingmaterial";
         List<Notice> list=template.query(query, new RowMapper<Notice>() {
             public Notice mapRow(ResultSet resultSet, int i) throws SQLException {
                 Notice n=new Notice();
@@ -44,7 +43,7 @@ public class TeachingMaterialDAO {
     }
 
     public void remove(int id){
-        String query="delete from "+course+"_teachingmaterial where id="+id;
+        String query="delete from "+GlobalVariables.getCourse()+"_teachingmaterial where id="+id;
         template.update(query);
     }
 

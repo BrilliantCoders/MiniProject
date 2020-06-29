@@ -1,11 +1,14 @@
 package com.security;
 
 
+import com.database.AdminLoginDAO;
 import com.helper.GlobalVariables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -21,6 +24,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +38,7 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
     @Autowired
     DriverManagerDataSource dataSource;
 
+
     @Autowired
     AuthenticationManager manager;
 
@@ -40,15 +46,13 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 
-        System.out.println("Courses user "+GlobalVariables.course);
-
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery(
                         "select RegNo as username,Password as password,Active as enabled from  "
-                                +"ds_mca_second_student where RegNo=?")
+                                +"students where RegNo=?")
 
                 .authoritiesByUsernameQuery(
-                        "select RegNo as username,Role as role from ds_mca_second_student where RegNo=?");
+                        "select RegNo as username,Role as role from students where RegNo=?");
     }
 
     @Bean

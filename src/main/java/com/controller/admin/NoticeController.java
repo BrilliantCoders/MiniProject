@@ -41,13 +41,7 @@ public class NoticeController {
         m.addAttribute("Notices",list);
         return "admin/ShowNotice";
     }
-    @RequestMapping(value = "showUserNotice")
-    public String showUserNotice(Model m, HttpServletRequest req){
 
-        List<Notice> list=dao.showNotice();
-        m.addAttribute("Notices",list);
-        return "user/showUserNotice";
-    }
 
 
     @RequestMapping(value = "/admin/deleteNotice/{id}")

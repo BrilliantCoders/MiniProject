@@ -29,7 +29,7 @@
     </div>
 
     <div style="width: 100%;alignment: center;text-align: center">
-        <form:form action="${contextPath}/uploadCourse" modelAttribute="course"  method="post" enctype="multipart/form-data">
+        <form:form action="${contextPath}/admin/uploadCourse" modelAttribute="course"  method="post" enctype="multipart/form-data">
             <table cellpadding="12px" cellspacing="3px" align="center" style="color: black">
                 <tr>
                     <td>Course Name </td>
@@ -56,7 +56,7 @@
                         <form:select path="type">
                             <form:option value="0">Class</form:option>
                             <form:option value="1">Lab</form:option>
-                            <form:option value="2">Class and Lab both</form:option>
+                            <%--<form:option value="2">Class and Lab both</form:option>--%>
                         </form:select>
                     </td>
 
@@ -66,7 +66,7 @@
                     <td><form:input path="year"/></td>
                 </tr>
                 <tr>
-                    <td>Upload File</td>
+                    <td>Upload Student List</td>
                     <td><input type="file" name="file"></td>
                 </tr>
 

@@ -26,7 +26,7 @@ public class QuizUserController {
     @Autowired
     UserQuizDAO dao;
 
-    @RequestMapping(value = "showQuestions")
+    @RequestMapping(value = "/user/showQuestions")
     public String showQuestions(Model m, @RequestParam("quizId") int quizId,@RequestParam("duration") int duration){
         System.out.println("id "+quizId);
         List<Question> list=dao.getQuestionList(quizId);
@@ -41,7 +41,7 @@ public class QuizUserController {
 
     }
 
-    @RequestMapping(value = "showQuiz")
+    @RequestMapping(value = "/user/showQuiz")
     public String showQuiz(Model m){
         List<Quiz> list=dao.getQuizList();
         m.addAttribute("quizList",list);
@@ -50,7 +50,7 @@ public class QuizUserController {
     }
 
 
-    @RequestMapping(value = "submitResponses")
+    @RequestMapping(value = "/user/submitResponses")
     public String submitResponses(Model m, QuestionListWrapper wrapper, HttpSession session){
         List<Question> list=wrapper.getQuestionList();
         System.out.println(list.size());
@@ -119,7 +119,7 @@ public class QuizUserController {
         return "user.QuizResult";
     }
 
-    @RequestMapping(value = "showResponses")
+    @RequestMapping(value = "/user/showResponses")
     public String showResponses(Model m,HttpSession session){
         List<Question> list= (List<Question>) session.getAttribute("questionList");
         m.addAttribute("questionList",list);

@@ -21,7 +21,7 @@ public class CustomUsernamePasswordAuthenticationFilterUser extends UsernamePass
         final String languageParam = request.getParameter("course");
         request.getSession().setAttribute("course", languageParam);
         request.getSession().setAttribute("type", "user");
-        GlobalVariables.course="ds_mca_second";
+        GlobalVariables.setCourse(languageParam);
         System.out.println("UserFilter" + languageParam);
         // You can do your stuff here
         return super.attemptAuthentication(request, response);

@@ -66,7 +66,7 @@
                     <td>${quiz.duration}</td>
                     <td style="color: #0d9e08;">
                     <c:if test="${quiz.active == 1}">
-                        <form action="${contextPath}/showQuestions" method="post" id="form${quiz.id}">
+                        <form action="${contextPath}/user/showQuestions" method="post" id="form${quiz.id}">
                             <input type="hidden" name="duration" value="${quiz.duration}">
                             <input type="hidden" name="quizId" value="${quiz.id}">
                         </form>

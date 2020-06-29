@@ -17,12 +17,12 @@ public class ViewTeachingMaterialController {
     @Autowired
     ViewTeachingMaterialDAO dao;
 
-    @RequestMapping(value = "viewMaterial")
+    @RequestMapping(value = "/user/viewMaterial")
     public String viewMaterial() {
         return "user/viewTeachingMaterial";
     }
 
-    @RequestMapping(value = "/fetchMaterial")
+    @RequestMapping(value = "/user/fetchMaterial")
     public ModelAndView listDetail(ModelAndView model) throws IOException {
         List<TeachingMaterial> listDet =dao.getMaterialList();
         model.addObject("listDet", listDet);

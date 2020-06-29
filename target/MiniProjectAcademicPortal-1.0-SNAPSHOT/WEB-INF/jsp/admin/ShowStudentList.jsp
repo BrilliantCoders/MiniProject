@@ -37,7 +37,6 @@
             });
 
             $("form").submit(function() {
-                alert("submit");
                 var x=absentList.join(",");
                 $("#absent").val(x);
                 $("#absent1").val(x);
@@ -62,7 +61,7 @@
         <b>Take Attendance</b>
     </div>
 
-    <form action="${contextPath}/submitAttendance"  method="post">
+    <form action="${contextPath}/admin/submitAttendance"  method="post">
         <input type="hidden" id="absent1" name="absent" value="">
         <input type="submit" class="btn btn-success" value="Submit Attendance">
     </form>
@@ -90,7 +89,7 @@
 
      </div>
 
-     <form action="${contextPath}/submitAttendance" id="form" method="post">
+     <form action="${contextPath}/admin/submitAttendance" id="form" method="post">
          <input type="hidden" id="absent" name="absent" value="">
          <input type="submit" class="btn btn-success" value="Submit Attendance">
      </form>

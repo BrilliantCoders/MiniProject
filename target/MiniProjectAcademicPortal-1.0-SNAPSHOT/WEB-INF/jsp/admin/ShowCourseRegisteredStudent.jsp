@@ -49,8 +49,8 @@
     </div>
 
     <div>
-        <form action="${contextPath}/addCourseStudent">
-            <input type="submit" value="Submit">
+        <form action="${contextPath}/admin/addCourseStudent">
+            <input type="submit" value="Submit" class="btn btn-success">
         </form>
     </div>
 

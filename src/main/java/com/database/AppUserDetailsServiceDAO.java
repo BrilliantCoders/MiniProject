@@ -15,8 +15,6 @@ public class AppUserDetailsServiceDAO implements UserDetailsService {
 
 
     protected final Log logger = LogFactory.getLog(getClass());
-    String course= GlobalVariables.course;
-
 
     public UserDetails loadUserByUsername(final String username)
             throws UsernameNotFoundException {

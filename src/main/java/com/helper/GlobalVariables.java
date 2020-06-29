@@ -5,5 +5,13 @@ import lombok.Data;
 
 public @Data
 class GlobalVariables {
-    public static String course;
+    private static String course;
+
+    public static void setCourse(String course) {
+        GlobalVariables.course = course;
+    }
+
+    public static String getCourse() {
+        return course;
+    }
 }

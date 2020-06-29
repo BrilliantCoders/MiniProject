@@ -77,7 +77,8 @@
     <div style="width: 100%;alignment: center;text-align: left">
 
         <c:forEach var="assgn" items="${assgnList}">
-            <div class="row container">
+            <div class="container">
+            <div class="row">
                 <div class="col-lg-10 col-md-10"  id="${assgn.id}">
                     <div style="color: #3d3395;font-size: 18px"><b>${assgn.assgnName}</b></div>
                         Start Date - ${assgn.startDate}<br>
@@ -98,7 +99,7 @@
                     </a>
                 </div>
             </div>
-
+            </div>
         </c:forEach>
 
 

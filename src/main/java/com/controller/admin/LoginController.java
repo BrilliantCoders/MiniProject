@@ -33,10 +33,8 @@ public class LoginController {
         }
 
         String type=(String)request.getSession().getAttribute("type");
-        System.out.println("Mytype "+type);
         if(type.equals("admin")){
             ArrayList<Feature> list=new ArrayList<Feature>();
-            String path="/resources/image";
             list.add(new Feature("Upload\nAttendance","admin/uploadAttendance","/resources/image/uploaddoc.ico"));
             list.add(new Feature("Mark\nAttendance","admin/attendanceList","/resources/image/atten.png"));
             list.add(new Feature("Performance\nRecord","admin/studentList","/resources/image/per.png"));
@@ -47,19 +45,21 @@ public class LoginController {
             list.add(new Feature("Show\nCourse","admin/showCourses","/resources/image/assgn.png"));
             list.add(new Feature("View\nAssignments","admin/viewAssignment","/resources/image/assgn2.png"));
             list.add(new Feature("Upload\nAssignment","admin/assignment","/resources/image/upload.png"));
-
             list.add(new Feature("Upload\nQuiz","admin/uploadQuiz","/resources/image/chgpass.png"));
-
             list.add(new Feature("Logout\nWebsite","/attendance","/resources/image/logout.png"));
-
-
             m.addAttribute("features",list);
-
-
             return "admin/AdminDashBoard";
         }
         else if(type.equals("user")){
-            return "user/AttendanceSuccess";
+            ArrayList<Feature> list=new ArrayList<Feature>();
+            list.add(new Feature("View Notice","/user/showUserNotice","/resources/image/atten.png"));
+            list.add(new Feature("Performance\nRecord","/attendance","/resources/image/per.png"));
+            list.add(new Feature("Teaching Material","/user/fetchMaterial","/resources/image/teaching_material.png"));
+            list.add(new Feature("See\nAssignments","/user/fetch","/resources/image/assgn2.png"));
+            list.add(new Feature("Show Quizzes","/user/showQuiz","/resources/image/assgn2.png"));
+            list.add(new Feature("Logout\nWebsite","/attendance","/resources/image/logout.png"));
+            m.addAttribute("features",list);
+            return "user/UserDashBoard";
         }
 
         return "admin/test";
@@ -75,21 +75,13 @@ public class LoginController {
     @RequestMapping(value = "/admin/login", method = RequestMethod.GET)
     public String init(Model model,HttpServletRequest request) {
         List<String> list=dao.getAllCourses();
-
-
         model.addAttribute("Courses",list);
         return "admin/AdminLogin";
     }
 
     @RequestMapping(value = "/admin/subLogin")
     public String submit(Model m, @ModelAttribute("Username") String userName,@ModelAttribute("Password") String password) {
-        /*
-        System.out.println("My Username is "+userName+"  Password is "+password);
 
-        boolean isLogin = dao.authenticate(userName,password);
-
-        if(isLogin==true) {
-       */
             ArrayList<Feature> list=new ArrayList<Feature>();
             String path="/resources/image";
             list.add(new Feature("Mark\nAttendance","attendanceList","/resources/image/atten.png"));
@@ -105,14 +97,8 @@ public class LoginController {
 
 
             m.addAttribute("features",list);
-
-
-
             return "admin/AdminDashBoard";
-  /*      }
-        else
-            return "admin/AdminLogin";
-  */  }
+    }
 
 
 
@@ -123,6 +109,6 @@ public class LoginController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "admin/UploadQuiz";
+        return "admin/AdminLogin";
     }
 }

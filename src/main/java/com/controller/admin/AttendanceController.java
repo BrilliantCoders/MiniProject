@@ -28,7 +28,7 @@ public class AttendanceController {
 
 
         List<Student> list=dao.getStudentList();
-        Collections.sort(list);
+        //Collections.sort(list);
 
         m.addAttribute("Students",list);
         return "admin/ShowStudentList";

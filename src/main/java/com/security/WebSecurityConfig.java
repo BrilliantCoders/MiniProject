@@ -56,7 +56,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
        // ds_mca_second_student
-        System.out.println("Courses Admin"+ GlobalVariables.course);
         auth.getDefaultUserDetailsService();
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery(

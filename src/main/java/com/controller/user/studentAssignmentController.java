@@ -27,12 +27,12 @@ public class studentAssignmentController {
     @Autowired
     StudentAssignmentDAOImpl dao;
 
-    @RequestMapping(value = "studentAssignment")
+    @RequestMapping(value = "/user/studentAssignment")
     public String studentAssignment(){
         return "user/studentUploadAssignment";
     }
 
-    @RequestMapping(value = "/fetch")
+    @RequestMapping(value = "/user/fetch")
     public ModelAndView listDetail(ModelAndView model) throws IOException {
         List<Assignment> listDet =dao.getAssignList();
         model.addObject("listDet", listDet);
@@ -41,7 +41,7 @@ public class studentAssignmentController {
         return  model;
     }
 
-    @RequestMapping(value = "uploadStudentAssignment")
+    @RequestMapping(value = "/user/uploadStudentAssignment")
     public String uploadAssignment(Assignment stud, @RequestParam("file") CommonsMultipartFile file, HttpSession session, HttpServletRequest req) {
         System.out.println(req.getRequestURI());
         String dates=(String) req.getParameter("date");

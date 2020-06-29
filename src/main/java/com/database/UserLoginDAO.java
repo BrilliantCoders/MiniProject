@@ -8,12 +8,13 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserLoginDAO {
     @Autowired
     JdbcTemplate template;
 
-    String course= GlobalVariables.course;
+
 
     public boolean authenticate(String userID,String userPassword) {
         String query="select * from user_Login  where UserName='"+userID+"' and Password='"+userPassword+"'; ";
@@ -45,6 +46,33 @@ public class UserLoginDAO {
         else{
             return true;
         }
+    }
+
+
+    public List<String> getAllCourses() {
+        String query = "select * from courses";
+
+        List<String> list = template.query(query, new RowMapper<String>() {
+            public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                String s="";
+                //Id, CourseName, SubjectName, BranchName, Semester, Year, Type
+                s+=resultSet.getString("SubjectName");
+                s+="_";
+                s+=resultSet.getString("CourseName");
+                s+="_";
+                s+=resultSet.getString("BranchName");
+                s+="_";
+                s+=resultSet.getString("Semester");
+                s+="_";
+                s+=resultSet.getString("Year");
+                s+="_";
+                s+=resultSet.getString("Type");
+                s=s.replaceAll(" ","");
+                return s;
+            }
+        });
+
+        return list;
     }
 
 }

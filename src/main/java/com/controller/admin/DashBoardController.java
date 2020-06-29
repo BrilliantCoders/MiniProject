@@ -20,9 +20,7 @@ public class DashBoardController {
     @RequestMapping(value = "/admin/dashboard")
     public String test(Model m, HttpServletRequest request){
 
-        System.out.println(GlobalVariables.course+" "+request.getSession().getAttribute("course"));
-        GlobalVariables.course=(String) request.getSession().getAttribute("course");
-
+        //GlobalVariables.setCourse((String) request.getSession().getAttribute("course"));
 
         ArrayList<Feature> list=new ArrayList<Feature>();
         String path="/resources/image";

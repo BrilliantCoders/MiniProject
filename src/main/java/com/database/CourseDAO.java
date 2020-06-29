@@ -42,6 +42,8 @@ public class CourseDAO {
 
 
     public void initStudent(String tableName,ArrayList<Student> students){
+
+
         String query="CREATE TABLE "+tableName+"_student (" +
                 "  RegNo VARCHAR(45) NOT NULL," +
                 "  RollNo INTEGER UNSIGNED NOT NULL," +
@@ -57,6 +59,16 @@ public class CourseDAO {
         template.update(query);
 
         for (Student st:students){
+
+            try {
+                query="insert into students (RegNo, Password)" +
+                        " values( '"+st.getRegNo()+"' ,'"+st.getPassword()+"');";
+                template.update(query);
+            }
+            catch (Exception e){
+
+            }
+
             query="insert into "+tableName+"_student (RegNo, RollNo, Name, Email, Password)" +
                     " values( '"+st.getRegNo()+"' , "+st.getRollNo()+" , '"+st.getName()+"'" +
                     " ,'"+st.getEmail()+"' ,'"+st.getPassword()+"');";
@@ -64,6 +76,10 @@ public class CourseDAO {
 
             query="insert into "+tableName+"_attendance " +
                     "values( '"+st.getRegNo()+"' , "+st.getRollNo()+" );";
+            template.update(query);
+
+            query="insert into students_enrolled_courses (RegNo, Course) " +
+                    "values( '"+st.getRegNo()+"' , '"+tableName+"' );";
             template.update(query);
         }
 
@@ -85,6 +101,7 @@ public class CourseDAO {
                 "  Id int(10) unsigned NOT NULL auto_increment,\n" +
                 "  Name varchar(45) NOT NULL,\n" +
                 "  Description text NOT NULL,\n" +
+                "  Date datetime NOT NULL,\n" +
                 "  PRIMARY KEY  (Id)\n" +
                 ");";
         template.update(query);
