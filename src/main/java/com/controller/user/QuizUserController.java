@@ -1,9 +1,8 @@
 package com.controller.user;
 
 import com.database.UserQuizDAO;
-import com.model.Question;
-import com.model.QuestionListWrapper;
-import com.model.Quiz;
+import com.helper.GlobalVariables;
+import com.model.*;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -12,11 +11,14 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,9 +29,11 @@ public class QuizUserController {
     UserQuizDAO dao;
 
     @RequestMapping(value = "/user/showQuestions")
-    public String showQuestions(Model m, @RequestParam("quizId") int quizId,@RequestParam("duration") int duration){
+    public String showQuestions(Model m, HttpServletRequest request, @RequestParam("quizId") int quizId, @RequestParam("duration") int duration){
         System.out.println("id "+quizId);
         List<Question> list=dao.getQuestionList(quizId);
+
+        request.getSession().setAttribute("quizid",quizId);
 
         QuestionListWrapper wrapper=new QuestionListWrapper();
         wrapper.setQuestionList(list);
@@ -41,6 +45,15 @@ public class QuizUserController {
 
     }
 
+    @RequestMapping(value = "/user/showResult/{id}")
+    public String showQuizResult(@PathVariable("id") String id, Model m, HttpServletRequest req){
+        List<QuizResult> list=dao.getQuizResult(id);
+
+        m.addAttribute("QuizResult",list);
+        return "user/ShowQuizResult";
+    }
+
+
     @RequestMapping(value = "/user/showQuiz")
     public String showQuiz(Model m){
         List<Quiz> list=dao.getQuizList();
@@ -51,11 +64,32 @@ public class QuizUserController {
 
 
     @RequestMapping(value = "/user/submitResponses")
-    public String submitResponses(Model m, QuestionListWrapper wrapper, HttpSession session){
+    public String submitResponses(Model m, QuestionListWrapper wrapper, HttpSession session,HttpServletRequest request){
         List<Question> list=wrapper.getQuestionList();
         System.out.println(list.size());
         m.addAttribute("questionList",list);
         session.setAttribute("questionList",list);
+
+        int correct=0;
+        int wrong=0;
+
+        for(Question question:list){
+            int ans=question.getUserAnswer();
+            if(ans == question.getAnswer()){
+                correct++;
+            }
+            else if(ans != -1){
+                wrong++;
+            }
+        }
+
+
+        int total=(correct*4)+(wrong*-1);
+        double out=(list.size())*4;
+
+
+
+        dao.setQuizResult("Quiz_"+request.getSession().getAttribute("quizid"),(total/out)*100);
 
       /*  PDDocument document = new PDDocument();
         PDPage page=new PDPage();

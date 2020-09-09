@@ -25,6 +25,7 @@ public class ViewTeachingMaterialController {
     @RequestMapping(value = "/user/fetchMaterial")
     public ModelAndView listDetail(ModelAndView model) throws IOException {
         List<TeachingMaterial> listDet =dao.getMaterialList();
+        dao.updateLastVisit();
         model.addObject("listDet", listDet);
         model.setViewName("user/viewTeachingMaterial");
 

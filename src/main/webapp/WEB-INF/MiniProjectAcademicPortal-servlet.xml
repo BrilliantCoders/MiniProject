@@ -54,7 +54,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
     <bean id="labRecoredHelper" class="com.helper.LabRecordHelper"/>
 
     <bean id="labRecordDao" class="com.database.LabRecordDAO"/>
-
+    <bean id="performanceDAO" class="com.database.PerformanceDAO"/>
 
 
     <bean id="multipartResolver"

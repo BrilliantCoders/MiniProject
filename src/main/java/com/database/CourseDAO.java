@@ -58,6 +58,14 @@ public class CourseDAO {
 
         template.update(query);
 
+        query="CREATE TABLE "+tableName+"_quizresult (" +
+                "  RegNo VARCHAR(45) NOT NULL," +
+                "  PRIMARY KEY (`RegNo`)" +
+                ")";
+
+        template.update(query);
+
+
         for (Student st:students){
 
             try {
@@ -80,6 +88,10 @@ public class CourseDAO {
 
             query="insert into students_enrolled_courses (RegNo, Course) " +
                     "values( '"+st.getRegNo()+"' , '"+tableName+"' );";
+            template.update(query);
+
+            query="insert into "+tableName+"_quizresult " +
+                    "values( '"+st.getRegNo()+"');";
             template.update(query);
         }
 
@@ -114,6 +126,7 @@ public class CourseDAO {
                 "  Name varchar(45) NOT NULL," +
                 "  Description text NOT NULL," +
                 "  File text NOT NULL,"+
+                "  Date datetime NOT NULL,\n" +
                 "  PRIMARY KEY  (Id)\n" +
                 ");";
         template.update(query);

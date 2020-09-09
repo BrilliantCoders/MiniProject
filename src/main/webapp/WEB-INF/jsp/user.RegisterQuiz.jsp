@@ -21,6 +21,9 @@
         function submit(x) {
             $('#form'+x).submit();
         }
+        function result(x) {
+            $('#result'+x).submit();
+        }
     </script>
 
 
@@ -55,6 +58,7 @@
                 <th>End Date & Time</th>
                 <th>Duration</th>
                 <th>Enter</th>
+                <th>Result</th>
             </tr>
             <% int x=0; %>
             <c:forEach var="quiz" items="${quizList}">
@@ -72,6 +76,12 @@
                         </form>
                         <label style="color: green;" onclick="submit(${quiz.id})"><u>Enter</u> </label>
                     </c:if>
+                    </td>
+                    <td>
+                        <form action="${contextPath}/user/showResult/${quiz.id}" method="post" id="result${quiz.id}">
+
+                        </form>
+                        <label type="submit" style="color: green;" onclick="result(${quiz.id})"><u>Result</u> </label>
                     </td>
                 </tr>
 

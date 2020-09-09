@@ -40,7 +40,7 @@
             </div>
             <div>
 
-                <form:form action="${contextPath}/previewQuiz" modelAttribute="quiz" enctype="multipart/form-data">
+                <form:form action="${contextPath}/admin/previewQuiz" modelAttribute="quiz" enctype="multipart/form-data">
                     <div style="text-align: center;width: 100%;">
                         <table cellpadding="9px" align="center">
                             <tr>

@@ -13,7 +13,7 @@
 
     <title>UserLogin</title>
 </head>
-<body>
+<body class="body">
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
 
 
@@ -73,10 +73,15 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    </br>
+                </td>
+            </tr>
+            <tr>
                 <td><input type="hidden"
                            name="${_csrf.parameterName}"
                            value="${_csrf.token}"/>   </td>
-                <td><input type="submit" name="submit" align="center"></td>
+                <td><input type="submit" name="submit" align="center" class="btn btn-success"></td>
             </tr>
         </table>
     </form>

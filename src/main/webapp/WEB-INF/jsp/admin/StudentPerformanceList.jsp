@@ -42,7 +42,7 @@
                 <th>Roll No</th>
                 <th>Name</th>
                 <th>Reg. No.</th>
-
+                <th>Performance Record</th>
             </tr>
             <c:forEach var="student" items="${Students}">
 

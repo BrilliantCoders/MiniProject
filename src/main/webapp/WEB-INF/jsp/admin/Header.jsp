@@ -25,8 +25,8 @@
 
 </div>
 <div class="column3">
-    <span style="color: #3d3395;font-weight: bold"> Contact No.</span> - 9876543210<br>
-    <span style="color: #3d3395;font-weight: bold">Email </span> - test132@xyz.com
+    <span style="color: #3d3395;font-weight: bold"> Contact No.</span> - 9453317401<br>
+    <span style="color: #3d3395;font-weight: bold">Email </span> - wairya@mnnit.ac.in
 </div>
 </div>
 

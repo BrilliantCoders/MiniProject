@@ -59,11 +59,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.getDefaultUserDetailsService();
         auth.jdbcAuthentication().dataSource(dataSource)
                 .usersByUsernameQuery(
-                        "select UserName as username,Password as password,Active as enabled from adminLogin " +
+                        "select UserName as username,Password as password,Active as enabled from teacher " +
                                 "where UserName=?")
 
                 .authoritiesByUsernameQuery(
-                        "select UserName as username,Role as role from adminLogin where UserName=?");
+                        "select UserName as username,Role as role from teacher where UserName=?");
     }
 
     @Bean

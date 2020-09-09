@@ -140,7 +140,7 @@ background: white">
     <div style="width: 100%;">
         <br>
         <br>
-        <form:form modelAttribute="questionListWrapper" action="${contextPath}/submitResponses" id="myform">
+        <form:form modelAttribute="questionListWrapper" action="${contextPath}/user/submitResponses" id="myform">
 
             <input type="submit" class="btn btn-success" value="Submit Quiz"><br><br>
 

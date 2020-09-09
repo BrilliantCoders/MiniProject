@@ -21,7 +21,7 @@ public class MailHelper {
     @Autowired
     AttendanceDAO dao;
 
-    public void send(String subject,String description){
+    public void sendMail(String subject,String description){
 
         List<Student> students=dao.getStudentList();
         ArrayList<String> list=getEmailList(students);
@@ -29,16 +29,16 @@ public class MailHelper {
         Email email = EmailBuilder.startingBlank()
 
 
-                .from("Rajat Kathuriya","kathuriyarajat@gmail.com")
+                .from("Name here","Email here")
 
                 .to("", list)
                 .withSubject(subject)
-                .withReplyTo("Rajat Kathuriya", "kathuriyarajat@gmail.com")
+                .withReplyTo("Name here", "Email here")
                 .withPlainText(description)
                 .buildEmail();
 
         Mailer mailer = MailerBuilder
-                .withSMTPServer("smtp.gmail.com", 587, "kathuriyarajat@gmail.com", "Rajat@5692")
+                .withSMTPServer("smtp.gmail.com", 587, "Email here", "Password here")
                 .withTransportStrategy(TransportStrategy.SMTP_TLS)
                 //.withProxy("172.31.100.29", 3128, "edcguest", "edcguest")
                 .withSessionTimeout(10 * 1000)

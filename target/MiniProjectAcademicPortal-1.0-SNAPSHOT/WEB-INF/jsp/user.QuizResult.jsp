@@ -82,7 +82,7 @@
             </td>
         </tr>
     </table>
-    <form action="${contextPath}/showResponses" method="post">
+    <form action="${contextPath}/user/showResponses" method="post">
         <input type="submit" class="btn btn-success" value="Show My Responses">
     </form>
 

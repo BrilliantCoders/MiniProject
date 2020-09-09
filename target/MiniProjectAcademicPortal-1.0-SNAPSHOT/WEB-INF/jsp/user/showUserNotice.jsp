@@ -74,18 +74,18 @@
     <div style="width: 100%;alignment: center;text-align: left">
 
         <c:forEach var="notice" items="${Notices}">
-            <div class="row container">
+            <div class="container">
+            <div class="row ">
                 <div class="col-lg-10 col-md-10"  id="${notice.id}">
-                    <div style="color: #3d3395;font-size: 18px"align="center"><b>${notice.name}</b></div><br>
+                    <div style="color: #3d3395;font-size: 18px";align="center"><b>${notice.name}</b></div>
                         ${notice.description}<br>
                 </div>
                 <div class="col-lg-2 col-md-2">
                     Date - ${notice.date}<br><br>
-                    <input type="checkbox" name="seen" value="seen">Seen
-
                     <br>
 
                 </div>
+            </div>
             </div>
 
         </c:forEach>

@@ -1,14 +1,18 @@
 package com.controller.admin;
 
 import com.database.QuizDAO;
+import com.database.UserQuizDAO;
 import com.helper.ExcelFileHelper;
+import com.helper.MailHelper;
 import com.model.Question;
 import com.model.Quiz;
+import com.model.QuizResult;
 import com.model.Student;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -31,6 +35,12 @@ public class QuizController {
 
     @Autowired
     QuizDAO dao;
+
+    @Autowired
+    UserQuizDAO userQuizDAO;
+
+    @Autowired
+    MailHelper mailHelper;
 
     @RequestMapping(value = "/admin/uploadQuiz")
     public String uploadQuiz(Model m){
@@ -93,8 +103,28 @@ public class QuizController {
         Quiz quiz= (Quiz) req.getSession().getAttribute("quiz");
         List<Question> questions= (List<Question>) req.getSession().getAttribute("questionList");
         dao.uploadQuiz(quiz,questions);
+        mailHelper.sendMail("New Quiz Uploaded","Hello Everyone , A quiz has been uploaded to the portal");
         return "admin/AttendanceSuccess";
 
     }
+
+
+    @RequestMapping(value = "/admin/showResult/{id}")
+    public String showQuizResult(@PathVariable("id") String id, Model m, HttpServletRequest req){
+        List<QuizResult> list=userQuizDAO.getQuizResult(id);
+
+        m.addAttribute("QuizResult",list);
+        return "user/ShowQuizResult";
+    }
+
+
+    @RequestMapping(value = "/admin/showQuiz")
+    public String showQuiz(Model m){
+        List<Quiz> list=userQuizDAO.getQuizList();
+        m.addAttribute("quizList",list);
+        return "admin/ShowAllQuizzes";
+
+    }
+
 
 }

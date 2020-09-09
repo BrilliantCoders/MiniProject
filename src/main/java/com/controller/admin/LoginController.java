@@ -1,6 +1,7 @@
 package com.controller.admin;
 
 import com.database.AdminLoginDAO;
+import com.database.UserLoginDAO;
 import com.model.Feature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,9 @@ public class LoginController {
     @Autowired
     AdminLoginDAO dao;
 
+    @Autowired
+    UserLoginDAO userLoginDAO;
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model m,HttpServletRequest request) {
@@ -35,29 +39,47 @@ public class LoginController {
         String type=(String)request.getSession().getAttribute("type");
         if(type.equals("admin")){
             ArrayList<Feature> list=new ArrayList<Feature>();
-            list.add(new Feature("Upload\nAttendance","admin/uploadAttendance","/resources/image/uploaddoc.ico"));
-            list.add(new Feature("Mark\nAttendance","admin/attendanceList","/resources/image/atten.png"));
-            list.add(new Feature("Performance\nRecord","admin/studentList","/resources/image/per.png"));
-            list.add(new Feature("Teaching\nMaterial","admin/addMaterial","/resources/image/teaching_material.png"));
-            list.add(new Feature("Upload Lab\nRecord","admin/uploadLabRecord","/resources/image/lab.png"));
+            list.add(new Feature("Upload <br> Attendance","admin/uploadAttendance","/resources/image/uploaddoc.ico"));
+            list.add(new Feature("Mark <br> Attendance","admin/attendanceList","/resources/image/atten.png"));
+            list.add(new Feature("Attendance <br> History","admin/showAttendance","/resources/image/atten.png"));
+
+            list.add(new Feature("Performance <br> Record","admin/studentList","/resources/image/per.png"));
+
+            list.add(new Feature("Teaching <br> Material","admin/addMaterial","/resources/image/teaching_material.png"));
+            list.add(new Feature("Show <br> Material","admin/showMaterial","/resources/image/teaching_material.png"));
+
+
+
             list.add(new Feature("Upload New Notice","admin/addNotice","/resources/image/notify2.png"));
-            list.add(new Feature("Add\nCourse","admin/addRemoveCourse","/resources/image/assgn.png"));
-            list.add(new Feature("Show\nCourse","admin/showCourses","/resources/image/assgn.png"));
-            list.add(new Feature("View\nAssignments","admin/viewAssignment","/resources/image/assgn2.png"));
-            list.add(new Feature("Upload\nAssignment","admin/assignment","/resources/image/upload.png"));
-            list.add(new Feature("Upload\nQuiz","admin/uploadQuiz","/resources/image/chgpass.png"));
-            list.add(new Feature("Logout\nWebsite","/attendance","/resources/image/logout.png"));
+            list.add(new Feature("Show Notices","admin/showNotice","/resources/image/notify2.png"));
+
+            list.add(new Feature("Upload Lab <br> Record","admin/uploadLabRecord","/resources/image/lab.png"));
+            list.add(new Feature("View <br> Assignments","admin/viewAssignment","/resources/image/assgn2.png"));
+            list.add(new Feature("Upload <br> Assignment","admin/assignment","/resources/image/upload.png"));
+
+
+            list.add(new Feature("Add <br> Course","admin/addRemoveCourse","/resources/image/assgn.png"));
+            list.add(new Feature("Show <br> Course","admin/showCourses","/resources/image/assgn.png"));
+
+            list.add(new Feature("Upload <br> Quiz","admin/uploadQuiz","/resources/image/chgpass.png"));
+            list.add(new Feature("Show <br> Quizzes","admin/showQuiz","/resources/image/chgpass.png"));
+
+            list.add(new Feature("Logout <br> Website","admin/logout","/resources/image/logout.png"));
+
             m.addAttribute("features",list);
             return "admin/AdminDashBoard";
         }
         else if(type.equals("user")){
+
+            userLoginDAO.updateLastVisit();
+
             ArrayList<Feature> list=new ArrayList<Feature>();
-            list.add(new Feature("View Notice","/user/showUserNotice","/resources/image/atten.png"));
-            list.add(new Feature("Performance\nRecord","/attendance","/resources/image/per.png"));
-            list.add(new Feature("Teaching Material","/user/fetchMaterial","/resources/image/teaching_material.png"));
-            list.add(new Feature("See\nAssignments","/user/fetch","/resources/image/assgn2.png"));
-            list.add(new Feature("Show Quizzes","/user/showQuiz","/resources/image/assgn2.png"));
-            list.add(new Feature("Logout\nWebsite","/attendance","/resources/image/logout.png"));
+            list.add(new Feature("View <br> Notice","/user/showUserNotice","/resources/image/atten.png"));
+            list.add(new Feature("Performance <br> Record","/user/studentPerformanceDetail","/resources/image/per.png"));
+            list.add(new Feature("Teaching <br> Material","/user/fetchMaterial","/resources/image/teaching_material.png"));
+            list.add(new Feature("See <br> Assignments","/user/fetch","/resources/image/assgn2.png"));
+            list.add(new Feature("Show <br> Quizzes","/user/showQuiz","/resources/image/assgn.png"));
+            list.add(new Feature("Logout <br> Website","/user/logout","/resources/image/logout.png"));
             m.addAttribute("features",list);
             return "user/UserDashBoard";
         }
@@ -84,16 +106,16 @@ public class LoginController {
 
             ArrayList<Feature> list=new ArrayList<Feature>();
             String path="/resources/image";
-            list.add(new Feature("Mark\nAttendance","attendanceList","/resources/image/atten.png"));
-            list.add(new Feature("Performance\nRecord","/attendance","/resources/image/per.png"));
-            list.add(new Feature("Teaching\nMaterial","attendanceList","/resources/image/teaching_material.png"));
-            list.add(new Feature("Laboratory\nRecord","attendance","/resources/image/lab.png"));
+            list.add(new Feature("Mark <br> Attendance","attendanceList","/resources/image/atten.png"));
+            list.add(new Feature("Performance <br> Record","/attendance","/resources/image/per.png"));
+            list.add(new Feature("Teaching <br> Material","attendanceList","/resources/image/teaching_material.png"));
+            list.add(new Feature("Laboratory <br> Record","attendance","/resources/image/lab.png"));
             list.add(new Feature("Upload New Notice","attendance","/resources/image/notify2.png"));
-            list.add(new Feature("Change\nPassword","/attendance","/resources/image/chgpass.png"));
-            list.add(new Feature("Upload\nAssignment","/attendance","/resources/image/upload.png"));
-            list.add(new Feature("See\nAssignments","/attendance","/resources/image/assgn2.png"));
-            list.add(new Feature("Add/Remove\nCourse","addRemoveCourse","/resources/image/assgn.png"));
-            list.add(new Feature("Logout\nWebsite","/attendance","/resources/image/logout.png"));
+            list.add(new Feature("Change <br> Password","/attendance","/resources/image/chgpass.png"));
+            list.add(new Feature("Upload <br> Assignment","/attendance","/resources/image/upload.png"));
+            list.add(new Feature("See <br> Assignments","/attendance","/resources/image/assgn2.png"));
+            list.add(new Feature("Add/Remove <br> Course","addRemoveCourse","/resources/image/assgn.png"));
+            list.add(new Feature("Logout <br> Website","/attendance","/resources/image/logout.png"));
 
 
             m.addAttribute("features",list);

@@ -8,6 +8,9 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class UserLoginDAO {
@@ -73,6 +76,15 @@ public class UserLoginDAO {
         });
 
         return list;
+    }
+
+    public void updateLastVisit(){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Timestamp sdate = new Timestamp(new Date().getTime());
+
+        String query="update "+GlobalVariables.getCourse()+"_Student set LastVisit='" +
+                formatter.format(sdate)+"'  where RegNo='"+GlobalVariables.getRegNo()+"'";
+        template.update(query);
     }
 
 }

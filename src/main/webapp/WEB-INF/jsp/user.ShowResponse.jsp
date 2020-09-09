@@ -63,10 +63,14 @@
         My Response
     </div>
 
-    <br>
+    <br><br>
+
+    <form action="${contextPath}/">
+        <input type="submit"class="btn btn-success" value="Back to HomePage">
+    </form>
 
 
-    <br>
+    <br><br>
 
 
 

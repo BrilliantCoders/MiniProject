@@ -20,7 +20,10 @@ public class UserNoticeController {
     public String showUserNotice(Model m, HttpServletRequest req){
 
         List<Notice> list=dao.showNotice();
+        dao.updateLastVisit();
         m.addAttribute("Notices",list);
         return "user/showUserNotice";
     }
+
+
 }

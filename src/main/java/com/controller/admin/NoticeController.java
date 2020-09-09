@@ -1,6 +1,7 @@
 package com.controller.admin;
 
 import com.database.NoticeDAO;
+import com.helper.MailHelper;
 import com.model.Notice;
 import com.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class NoticeController {
     @Autowired
     NoticeDAO dao;
 
+    @Autowired
+    MailHelper helper;
+
     @RequestMapping(value = "/admin/addNotice")
     public String addNotice(){
         return "admin/UploadNotice";
@@ -29,9 +33,9 @@ public class NoticeController {
     @RequestMapping(value = "/admin/uploadNotice")
     public String uploadNotice( HttpSession session, HttpServletRequest req){
         SimpleDateFormat formatter = new SimpleDateFormat("EEE_MMM_dd_00_00_00_zzz_yyyy");
-
         dao.insertNotice((String)req.getParameter("name"),(String)req.getParameter("desc"));
-        return "admin/AdminDashBoard";
+        helper.sendMail("New Notice Uploaded","Hello Everyone , A notice has been uploaded to the portal");
+        return "admin/AttendanceSuccess";
     }
 
     @RequestMapping(value = "/admin/showNotice")

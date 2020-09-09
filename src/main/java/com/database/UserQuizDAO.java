@@ -3,6 +3,7 @@ package com.database;
 import com.helper.GlobalVariables;
 import com.model.Question;
 import com.model.Quiz;
+import com.model.QuizResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -67,9 +68,34 @@ public class UserQuizDAO {
                 return ob;
             }
         });
-
-
         return list;
     }
+
+
+    public void setQuizResult(String colName,double marks){
+        String query="update "+GlobalVariables.getCourse()+"_quizresult set "+colName+" = '" +
+                marks+"' where RegNo='"+GlobalVariables.getRegNo()+"'";
+        template.update(query);
+    }
+
+
+    public List<QuizResult> getQuizResult(String quizId){
+        List<QuizResult> list=new ArrayList<QuizResult>();
+        String query="select Quiz_"+quizId+" as Marks,RollNo,Name from "+GlobalVariables.getCourse()+"_quizresult q, "+GlobalVariables.getCourse()+"_student s" +
+                " where q.RegNo = s.RegNo and Quiz_"+quizId+"!=-1000 order by Marks desc";
+
+        list=template.query(query, new RowMapper<QuizResult>() {
+            public QuizResult mapRow(ResultSet resultSet, int i) throws SQLException {
+                QuizResult ob=new QuizResult();
+                ob.setName(resultSet.getString("Name"));
+                ob.setRollNo(resultSet.getInt("RollNo"));
+                ob.setMarks(resultSet.getDouble("Marks"));
+                return ob;
+            }
+        });
+        return list;
+    }
+
+
 
 }

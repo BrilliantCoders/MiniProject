@@ -79,7 +79,7 @@ public class WebSecurityConfig2 extends WebSecurityConfigurerAdapter {
                 .and().formLogin().loginPage("/user/login")
                 .defaultSuccessUrl("/user/dashboard", true)
                 .permitAll()
-                .and().logout().logoutSuccessUrl("/user/login")
+                .and().logout().logoutUrl("/user/logout").logoutSuccessUrl("/user/login")
                  .and()
                 .addFilterBefore(exUsernamePasswordAuthenticationFilterUser(), UsernamePasswordAuthenticationFilter.class);;
 

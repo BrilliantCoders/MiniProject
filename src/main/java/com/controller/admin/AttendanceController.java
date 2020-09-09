@@ -1,6 +1,7 @@
 package com.controller.admin;
 
 import com.database.AttendanceDAO;
+import com.helper.MailHelper;
 import com.model.Student;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class AttendanceController {
 
     @Autowired
     AttendanceDAO dao;
+
+    @Autowired
+    MailHelper helper;
 
     @RequestMapping(value = "/admin/attendanceList")
     public String showStudentList(Model m){
@@ -48,6 +52,7 @@ public class AttendanceController {
         String dt=formatter.format(date);
 
         dao.markAttendance(dt,absent);
+
         return "admin/AttendanceSuccess";
     }
 

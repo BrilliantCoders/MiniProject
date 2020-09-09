@@ -72,7 +72,7 @@ public class NoticeDAO {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println(formatter.format(d));
 
-        String query="select RollNo,Name from databasemanagementsystem_btech_cs_3_2020_student where LastVisitNotice <= '"+formatter.format(d)+"' order by RollNo asc;";
+        String query="select RollNo,Name from "+GlobalVariables.getCourse()+"_student where LastVisitNotice <= '"+formatter.format(d)+"' or LastVisitNotice is null order by RollNo asc;";
         list=  template.query(query, new RowMapper<Student>() {
             public Student mapRow(ResultSet resultSet, int i) throws SQLException {
                 Student ob=new Student();
@@ -84,6 +84,16 @@ public class NoticeDAO {
 
         return list;
 
+    }
+
+
+    public void updateLastVisit(){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Timestamp sdate = new Timestamp(new Date().getTime());
+
+        String query="update "+GlobalVariables.getCourse()+"_Student set LastVisit='" +
+                formatter.format(sdate)+"' , LastVisitNotice= '"+formatter.format(sdate)+"' where RegNo='"+GlobalVariables.getRegNo()+"'";
+        template.update(query);
     }
 
 }

@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Footer.css"/>" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
-<body>
+<body class="body">
 
 <%@ include file="/WEB-INF/jsp/admin/Header.jsp" %>
 

@@ -38,6 +38,7 @@ public class QuizDAO {
             }
         });
         uploadQuestions(questions,id);
+        addResultColumn(quiz.getQuizName(),id);
 
     }
 
@@ -76,6 +77,11 @@ public class QuizDAO {
         });
 
 
+    }
+
+    public void addResultColumn(String name,int quizId){
+        String query="Alter table "+GlobalVariables.getCourse()+"_quizresult add column Quiz_"+quizId+" DOUBLE DEFAULT -1000";
+        template.update(query);
     }
 
 }
