@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDAO {
-
+// ye samrt tomacat apache tomcat hi h ?
+    // ek aritifact deploy ka option aata tha na ?
+    //ha tomcat ka path ?
     @Autowired
     JdbcTemplate template;
 

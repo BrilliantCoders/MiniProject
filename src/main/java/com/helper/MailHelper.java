@@ -27,18 +27,19 @@ public class MailHelper {
         ArrayList<String> list=getEmailList(students);
 
         Email email = EmailBuilder.startingBlank()
+                // yha pr jha jha Name here h wha apna name and emal here h wha email and  password here ki jagah apna paaword daalna tbi mail wala work krega
+                //ok bro thanks and problem aaye to puch lena  ok bye bye
 
-
-                .from("Name here","Email here")
+                .from("Yash Yadav","yadavyash115@gmail.com")
 
                 .to("", list)
                 .withSubject(subject)
-                .withReplyTo("Name here", "Email here")
+                .withReplyTo("Yash Yadav", "yadavyash115@gmail.com")
                 .withPlainText(description)
                 .buildEmail();
 
         Mailer mailer = MailerBuilder
-                .withSMTPServer("smtp.gmail.com", 587, "Email here", "Password here")
+                .withSMTPServer("smtp.gmail.com", 587, "yadavyash115@gmail.com", "Honesty@123")
                 .withTransportStrategy(TransportStrategy.SMTP_TLS)
                 //.withProxy("172.31.100.29", 3128, "edcguest", "edcguest")
                 .withSessionTimeout(10 * 1000)
@@ -60,12 +61,8 @@ public class MailHelper {
        /* for (Student s: students) {
             list.add(s.getEmail());
         }*/
-       list.add("kathuriyarajat@gmail.com");
-       list.add("rajurajat41@gmail.com");
-        list.add("rajurajat37@gmail.com");
-        list.add("rajurajat40@gmail.com");
-        list.add("rajurajat38@gmail.com");
-        list.add("hello1233232@gmail.com");
+       list.add("yadayyash115@gmail.com");
+       list.add("amany8194@gmail.com");
         return list;
     }
 
